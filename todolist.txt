@@ -1,0 +1,10 @@
+todolist saya :
+
+1. membuat fitur chat menggunakan filachat : https://github.com/199ocero/filachat
+2. membuat validasi untuk siswa yg akan melakukan magang dan menyelesaikan logika 
+   pendaftaran siswa magang
+3. membuat dashboard untuk pembimbing
+
+
+mengedit tampilan halaman tugas, membuat tampilan view agar lebih enak dilihat
+membuat tampilan "magang telah selesai jika waktunya habis pada dashboard siswa"
