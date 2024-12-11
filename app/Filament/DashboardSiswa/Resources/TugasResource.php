@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Filament\DashboardSiswa\Resources\TugasResource\Pages;
 use App\Filament\DashboardSiswa\Resources\TugasResource\RelationManagers;
 use App\Models\IntershipStudent;
+use Filament\Support\Enums\IconPosition;
 
 class TugasResource extends Resource
 {
@@ -75,9 +76,9 @@ class TugasResource extends Resource
             ])
             ->actions([
                 Tables\Actions\ViewAction::make()
-                ->label('Lihat'),
-                Tables\Actions\EditAction::make()
-                ->label('Kirim Jawaban')
+                ->label('Lihat Tugas')
+                ->icon('heroicon-o-eye')
+                ->color('info')
             ])
             ->bulkActions([
                 
@@ -103,8 +104,8 @@ class TugasResource extends Resource
     {
         return [
             'index' => Pages\ListTugas::route('/'),
-            'create' => Pages\CreateTugas::route('/create'),
             'edit' => Pages\EditTugas::route('/{record}/edit'),
+            'view' => Pages\ViewTugas::route('/{record}'),
         ];
     }
 }
