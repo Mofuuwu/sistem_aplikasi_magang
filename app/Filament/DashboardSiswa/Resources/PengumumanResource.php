@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Auth;
 class PengumumanResource extends Resource
 {
     protected static ?string $model = Announcement::class;
+    protected static ?int $navigationSort = 4;
 
     protected static ?string $navigationIcon = 'heroicon-s-megaphone';
     protected static ?string $slug = 'pengumuman';

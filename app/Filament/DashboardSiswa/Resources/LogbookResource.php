@@ -20,7 +20,7 @@ class LogbookResource extends Resource
 {
     protected static ?string $model = Logbook::class;
 
-    protected static ?string $navigationIcon = 'heroicon-s-calendar-days';
+    protected static ?string $navigationIcon = 'heroicon-s-document-chart-bar';
     protected static ?int $navigationSort = 3;
     protected static ?string $pluralModelLabel = 'Logbook Anda';
     protected static ?string $navigationLabel = 'Logbook';

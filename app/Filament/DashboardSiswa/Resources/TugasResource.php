@@ -21,8 +21,10 @@ use Filament\Support\Enums\IconPosition;
 class TugasResource extends Resource
 {
     protected static ?string $model = Task::class;
+    protected static ?int $navigationSort = 3;
 
-    protected static ?string $navigationIcon = 'heroicon-s-square-3-stack-3d';
+    // protected static ?string $navigationIcon = 'heroicon-s-square-3-stack-3d';
+    protected static ?string $navigationIcon = 'heroicon-s-rectangle-stack';
     protected static ?string $navigationLabel = 'Tugas';
 
     public static function form(Form $form): Form

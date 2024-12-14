@@ -27,6 +27,7 @@ class DashboardPembimbingPanelProvider extends PanelProvider
             ->id('dashboard_pembimbing')
             ->path('dashboard_pembimbing')
             ->login()
+            ->registration()
             ->colors([
                 'primary' => Color::Violet,
             ])

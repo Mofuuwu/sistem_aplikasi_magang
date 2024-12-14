@@ -105,8 +105,8 @@ $sisaHariMagang = $today->diffInDays($endAt);
 
         <!-- Tombol Edit Data -->
         <div style="margin-top: 20px; text-align: right;">
-            <x-filament::button tag="a" href="" size="lg" color="info" style="cursor:pointer;">
-                Edit Data siswa
+            <x-filament::button tag="a" href="dashboard_siswa/profiles" size="lg" color="info" style="cursor:pointer;">
+                Profil
             </x-filament::button>
         </div>
     </x-filament::section>

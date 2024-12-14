@@ -28,10 +28,11 @@ class DashboardSiswaPanelProvider extends PanelProvider
             ->id('dashboard_siswa')
             ->path('dashboard_siswa')
             ->login()
+            ->registration()
             ->colors([
                 'primary' => Color::Violet,
             ])
-            ->profile()
+            ->profile(isSimple: false)
             ->breadcrumbs(false)
             ->brandName('Aplikasi Magang')
             ->discoverResources(in: app_path('Filament/DashboardSiswa/Resources'), for: 'App\\Filament\\DashboardSiswa\\Resources')
