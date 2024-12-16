@@ -21,3 +21,7 @@ logic ketika user pertama kali masuk aplikasi :
 
 note : buat juga pemeriksaan nilai pada tampilan blade, sehingga jika nilai kolom yg diambil null,
        maka tidak akan terjadi error pada sistem
+      
+urgent : sama seperti yg di note, buat pemeriksaan nilai terlebih dahulu di setiap halaman agar 
+         ketika ada user yg baru registrasi dan mengakses halaman, maka halaman tidak akan error 
+         karena data student nya masih kosong

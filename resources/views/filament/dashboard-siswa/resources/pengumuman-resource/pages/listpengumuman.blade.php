@@ -12,7 +12,7 @@
                 <div class="flex items-center">
                     <!-- Judul --> 
                     <div class="text-sm font-medium text-gray-800 dark:text-gray-200 mx-3">
-                        {{ $announcement->header }}
+                        {{ $announcement->content }}
                     </div>
                 </div>
                 <!-- Kanan: Tombol -->

@@ -16,11 +16,25 @@ $kolomData = [
 ];
 @endphp
 <x-filament::page>
+@if(session('success'))
+    <x-filament::section color="success" id="success-alert" style="background-color:green;">
+        <div class="w-full flex justify-between">
+            <p>{{ session('success') }}</p>
+            <button 
+                style="color: #fff;"
+                onclick="closeAlert()" 
+                aria-label="Close"
+            >
+                &times;
+            </button>
+        </div>
+    </x-filament::section>
+@endif
     <x-filament::section>
         <div class=" w-full flex justify-center items-center">
             <x-filament::avatar
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRU-FjZagg6up7L-ajVO73GVYGIw2rUV8bp3A&s"
-                alt="Dan Harrin"
+            src="{{ asset('storage/profile_photos/' . $student->profile_photo) }}"
+                alt="{{ $user->name }}"
                 style="width:30%; height: auto;"
             />
         </div>
@@ -50,3 +64,13 @@ $kolomData = [
         </div>
     </x-filament::section>
 </x-filament::page>
+<script>
+    function closeAlert() {
+        const alertElement = document.getElementById('success-alert');
+        if (alertElement) {
+            alertElement.style.transition = "opacity 0.3s ease";
+            alertElement.style.opacity = "0";
+            setTimeout(() => alertElement.style.display = "none", 300); // Sembunyikan elemen setelah transisi
+        }
+    }
+</script>

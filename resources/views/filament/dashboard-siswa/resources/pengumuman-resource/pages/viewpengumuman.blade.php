@@ -16,24 +16,19 @@
 <div id="popup" class="bg-gray-800 bg-opacity-50 flex justify-center items-center">
         <div class="bg-white dark:bg-gray-900 rounded-lg w-full custom-width h-[calc(66vh)] flex flex-col p-6 relative">
             <!-- Header -->
-            <div class="flex justify-between items-center">
-                <h3 id="popup-title" class="text-lg font-bold text-gray-800 dark:text-gray-100">
-                    {{ $announcement->header }}
-                </h3>
-                <p>
-                    {{ $announcement->created_at }}
+                <p class="text-sm text-gray-600">
+                    Dibuat pada : {{ $announcement->created_at }}
                 </p>
-            </div>
+                <h3 id="popup-title" class="text-md text-gray-800 dark:text-gray-100">
+                    {{ $announcement->content }}
+                </h3>
             
-            <p id="popup-description" class="text-sm text-gray-600 dark:text-gray-300 mb-6 flex-grow overflow-y-auto mb-4">
-                {{ $announcement->content }}
-            </p>
 
             <!-- Komentar Baru -->
-            <form class="flex items-center justify-between mb-4" method="post" action="{{route('dashboard_siswa.addcomment')}}">
+            <form class="flex items-center justify-between my-4" method="post" action="{{route('dashboard_siswa.addcomment')}}">
                 @csrf
                 <x-filament::input
-                    style="border-bottom:2px solid #383734"
+                    style="border:2px solid #383734; border-radius:16px; margin-right:1%;"
                     placeholder="Masukkan Komentar"
                     name="content"
                     required
@@ -42,7 +37,7 @@
                 <input type="hidden" name="announcement_id" value="{{ $announcement->id }}">
                 <x-filament::button
                     type="submit"
-                    style="padding: 8px 16px;"
+                    style="padding: 1% 4%; border-radius:12px;"
                     color="primary"
                 >
                     Kirim
@@ -54,7 +49,7 @@
                 <h4 class="text-sm font-bold text-gray-800 dark:text-gray-100">Semua Komentar</h4>
                 @foreach ($comments as $comment)
                     <div class="flex gap-2 items-start">
-                        <img src="https://via.placeholder.com/40" alt="Foto Profil" class="w-10 h-10 rounded-full">
+                        <img src="{{ asset('storage/profile_photos/' . Auth::user()->student->profile_photo) }}" alt="Foto Profil" class="w-10 h-10 rounded-full">
                         <div>
                             <p class="text-sm font-medium text-gray-800 dark:text-gray-100">{{$comment->user->name}}</p>
                             <p class="text-sm text-gray-600 dark:text-gray-300">{{$comment->content}}</p>
