@@ -17,4 +17,5 @@ Route::get('/login', function () {
 Route::post('/dashboard_siswa/pengumuman/addcomment', [AnnouncementCommentsController::class, 'store'])->name('dashboard_siswa.addcomment');
 Route::put('/dashboard_siswa/tugas/{id}/submittask', [TaskController::class, 'update'])->name('dashboard_siswa.submittask');
 
-Route::post('/dashboard_siswa/profiles/{id}/edit', [StudentController::class, 'edit'])->name('dashboard_siswa.editprofile');;
+Route::post('/dashboard_siswa/profiles/{id}/edit', [StudentController::class, 'edit'])->name('dashboard_siswa.editprofile');
+Route::post('/dashboard_siswa/profiles/create', [StudentController::class, 'create'])->name('dashboard_siswa.createprofile');

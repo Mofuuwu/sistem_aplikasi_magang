@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('school_id');
             $table->string('phone_number');
             $table->text('address');
-            $table->text('profile_photo');
+            $table->text('profile_photo')->nullable();
             $table->string('father_name');
             $table->string('father_job');
             $table->string('mother_name');

@@ -1,20 +1,42 @@
 @php
 $kolomData = [
-    'Nama Lengkap' => $user->name,
-    'Kelas' => $user->student->class ? $user->student->class : '<span style="color: red;">Belum diisi</span>',
-    'Jurusan' => $user->student->major_id ? ($user->student->major ? $user->student->major->name : '<span style="color: red;">Belum diisi</span>') : '<span style="color: red;">Belum diisi</span>',
-    'Sekolah' => $user->student->school ? $user->student->school->name : '<span style="color: red;">Belum diisi</span>',
-    'Nomor Telepon' => $user->student->phone_number ? $user->student->phone_number  : '<span style="color: red;">Belum diisi</span>',
-    'Alamat' => $user->student->address ? $user->student->address : '<span style="color: red;">Belum diisi</span>',
-    'Nama Ayah' => $user->student->father_name ? $user->student->father_name : '<span style="color: red;">Belum diisi</span>',
-    'Pekerjaan Ayah' => $user->student->father_job ? $user->student->father_job : '<span style="color: red;">Belum diisi</span>',
-    'Nama Ibu' => $user->student->mother_name ? $user->student->mother_name : '<span style="color: red;">Belum diisi</span>',
-    'Pekerjaan Ibu' => $user->student->mother_job ? $user->student->mother_job : '<span style="color: red;">Belum diisi</span>',
-    'Status Akun' => $user->student->isactive == 1 
+    'Nama Lengkap' => $user->name ?? '<span style="color: red;">Belum diisi</span>',
+    'Kelas' => $user->student && $user->student->class 
+        ? $user->student->class 
+        : '<span style="color: red;">Belum diisi</span>',
+    'Jurusan' => $user->student && $user->student->major_id 
+        ? ($user->student->major 
+            ? $user->student->major->name 
+            : '<span style="color: red;">Belum diisi</span>')
+        : '<span style="color: red;">Belum diisi</span>',
+    'Sekolah' => $user->student && $user->student->school 
+        ? $user->student->school->name 
+        : '<span style="color: red;">Belum diisi</span>',
+    'Nomor Telepon' => $user->student && $user->student->phone_number 
+        ? $user->student->phone_number 
+        : '<span style="color: red;">Belum diisi</span>',
+    'Alamat' => $user->student && $user->student->address 
+        ? $user->student->address 
+        : '<span style="color: red;">Belum diisi</span>',
+    'Nama Ayah' => $user->student && $user->student->father_name 
+        ? $user->student->father_name 
+        : '<span style="color: red;">Belum diisi</span>',
+    'Pekerjaan Ayah' => $user->student && $user->student->father_job 
+        ? $user->student->father_job 
+        : '<span style="color: red;">Belum diisi</span>',
+    'Nama Ibu' => $user->student && $user->student->mother_name 
+        ? $user->student->mother_name 
+        : '<span style="color: red;">Belum diisi</span>',
+    'Pekerjaan Ibu' => $user->student && $user->student->mother_job 
+        ? $user->student->mother_job 
+        : '<span style="color: red;">Belum diisi</span>',
+    'Status Akun' => $user->student && $user->student->is_active == 1 
         ? '<span style="color: green;">Aktif</span>' 
-        : '<span style="color: red;">Tidak Aktif</span>'
+        : '<span style="color: red;">Tidak Aktif</span>',
 ];
+
 @endphp
+
 <x-filament::page>
 @if(session('success'))
     <x-filament::section color="success" id="success-alert" style="background-color:green;">
@@ -33,7 +55,7 @@ $kolomData = [
     <x-filament::section>
         <div class=" w-full flex justify-center items-center">
             <x-filament::avatar
-            src="{{ asset('storage/profile_photos/' . $student->profile_photo) }}"
+            src="{{ $user->student? asset('storage/profile_photos/' . $student->profile_photo) : '' }}"
                 alt="{{ $user->name }}"
                 style="width:30%; height: auto;"
             />

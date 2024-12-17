@@ -10,6 +10,45 @@ use Illuminate\Support\Facades\Storage;
 
 class StudentController extends Controller
 {
+    public function create(Request $request) {
+        $validatedData = $request->validate([
+            'name' => 'required|string',
+            'class' => 'required|numeric',
+            'major_id' => 'required|numeric',
+            'school_id' => 'required|numeric',
+            'phone_number' => 'required|numeric',
+            'address' => 'required',
+            'father_name' => 'required|string',
+            'father_job' => 'required|string',
+            'mother_name' => 'required|string',
+            'mother_job' => 'required|string',
+            'profile_photo' => 'nullable|image|max:2048',
+        ]);
+
+
+        if($validatedData) {
+            $filename = null;
+            if ($request->hasFile('profile_photo')) {
+                $file = $request->file('profile_photo');
+                $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension(); 
+                $file->storeAs('profile_photos', $filename, 'public');
+            }
+            $user_id = Auth::id();
+            Student::create([
+                'user_id' => $user_id,
+                'class' => $validatedData['class'],
+                'major_id' => $validatedData['major_id'],
+                'school_id' => $validatedData['school_id'],
+                'phone_number' => $validatedData['phone_number'],
+                'address' => $validatedData['address'],
+                'father_name' => $validatedData['father_name'],
+                'father_job' => $validatedData['father_job'],
+                'mother_name' => $validatedData['mother_name'],
+                'mother_job' => $validatedData['mother_job'],
+                'profile_photo' => $filename
+            ]);
+        }
+    }
     public function edit(Request $request, $id) {
         $validatedData = $request->validate([
             'name' => 'required|string',

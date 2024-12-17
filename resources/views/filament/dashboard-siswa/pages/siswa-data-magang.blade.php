@@ -1,15 +1,7 @@
-<?php
-$kolomData = [
-    'Nama Lengkap' => $user->name,
-    'Pembimbing' => $user->student->intership_student->mentor->user->name,
-    'Unit' => $user->student->intership_student->work_unit->name,
-    'Lokasi' => $user->student->intership_student->work_unit->placement_location->name,
-    'Alamat' => $user->student->intership_student->work_unit->placement_location->address,
-    'Mulai dari' => $user->student->intership_student->start_at,
-    'Selesai pada' => $user->student->intership_student->end_at
-];
-?>
-<x-filament-panels::page>
+<x-filament::page>
+    
+    @if ( Auth::user() && Auth::user()->student && Auth::user()->student->is_active == '1')
+        
     <x-filament::section>
     <x-slot name="heading">
         Data Magang Anda
@@ -53,4 +45,12 @@ $kolomData = [
                 @endforeach
             </p>
     </x-filament::section>
+
+    @else
+    <x-filament::section class="text-center p-4 text-gray-600">
+        Anda Belum Terdaftar Sebagai Siswa Magang,
+        Silahkan Isi Data Diri Terlebih Dahulu Dan Tunggu Sampai Admin Mengaktifkan Akun Anda
+    </x-filament::section>
+    @endif
+
 </x-filament-panels::page>

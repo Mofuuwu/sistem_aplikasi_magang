@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\DashboardSiswa\Resources\LogbookResource\Pages;
 use App\Filament\DashboardSiswa\Resources\LogbookResource\RelationManagers;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
 class LogbookResource extends Resource
@@ -85,7 +86,8 @@ class LogbookResource extends Resource
                 ->label('Hapus')
             ])
             ->bulkActions([
-            ]);
+            ])
+            ;
     }
 
     public static function getRelations(): array
@@ -101,6 +103,10 @@ class LogbookResource extends Resource
             'index' => Pages\ListLogbooks::route('/'),
             'edit' => Pages\EditLogbook::route('/{record}/edit'),
         ];
+    }
+    public static function canAccess(): bool
+    {
+        return Auth::user() && Auth::user()->student && Auth::user()->student->is_active == '1';
     }
     
 }

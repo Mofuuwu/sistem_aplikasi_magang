@@ -25,3 +25,5 @@ note : buat juga pemeriksaan nilai pada tampilan blade, sehingga jika nilai kolo
 urgent : sama seperti yg di note, buat pemeriksaan nilai terlebih dahulu di setiap halaman agar 
          ketika ada user yg baru registrasi dan mengakses halaman, maka halaman tidak akan error 
          karena data student nya masih kosong
+untuk yg urgent sepertinya sudah, besok bisa di cek lagi, sepertinya langkah selanjutnya adalah 
+membuat create untuk student di profil

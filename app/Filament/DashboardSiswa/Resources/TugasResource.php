@@ -110,4 +110,8 @@ class TugasResource extends Resource
             'view' => Pages\ViewTugas::route('/{record}'),
         ];
     }
+    public static function canAccess(): bool
+    {
+        return Auth::user() && Auth::user()->student && Auth::user()->student->is_active == '1';
+    }
 }

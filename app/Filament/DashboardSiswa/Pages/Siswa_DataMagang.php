@@ -21,16 +21,25 @@ class Siswa_DataMagang extends Page
     // public $work_unit;
     public $generalRules;
     public $unitRules;
+    public $kolomData;
     public function mount()
     {
-        $this->user = User::with('student')->find(Auth::id());
-        // $this->dataMagangSiswa = $this->dataSiswa 
-        //     ? IntershipStudent::where('student_id', $this->dataSiswa->id)->first() 
-        //     : null;
-        // $this->work_unit = $this->dataMagangSiswa->work_unit_id;
-
-        $this->generalRules = Rule::where('type', 'general')->get();
-        $this->unitRules = Rule::where('work_unit_id', $this->user->student->intership_student->work_unit_id)->get();
+        if ( Auth::user() && Auth::user()->student) {
+            if (Auth::user()->student->is_active == '1') {
+                $this->user = User::with('student')->find(Auth::id());
+                $this->generalRules = Rule::where('type', 'general')->get();
+                $this->unitRules = Rule::where('work_unit_id', $this->user->student->intership_student->work_unit_id)->get();
+                $this->kolomData = [
+                    'Nama Lengkap' => $this->user->name,
+                    'Pembimbing' => $this->user->student->intership_student->mentor->user->name,
+                    'Unit' => $this->user->student->intership_student->work_unit->name,
+                    'Lokasi' => $this->user->student->intership_student->work_unit->placement_location->name,
+                    'Alamat' => $this->user->student->intership_student->work_unit->placement_location->address,
+                    'Mulai dari' => $this->user->student->intership_student->start_at,
+                    'Selesai pada' => $this->user->student->intership_student->end_at
+                ];
+            }
+        } 
     }
     
 }

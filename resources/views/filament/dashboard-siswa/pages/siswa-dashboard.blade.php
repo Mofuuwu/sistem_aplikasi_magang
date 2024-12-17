@@ -1,26 +1,56 @@
 @php
+use Carbon\Carbon;
 
 $kolomData = [
-    'Nama Lengkap' => $user->name,
-    'Kelas' => $user->student->class ? $user->student->class : '<span style="color: red;">Belum diisi</span>',
-    'Jurusan' => $user->student->major_id ? ($user->student->major ? $user->student->major->name : '<span style="color: red;">Belum diisi</span>') : '<span style="color: red;">Belum diisi</span>',
-    'Sekolah' => $user->student->school ? $user->student->school->name : '<span style="color: red;">Belum diisi</span>',
-    'Nomor Telepon' => $user->student->phone_number ? $user->student->phone_number  : '<span style="color: red;">Belum diisi</span>',
-    'Alamat' => $user->student->address ? $user->student->address : '<span style="color: red;">Belum diisi</span>',
-    'Nama Ayah' => $user->student->father_name ? $user->student->father_name : '<span style="color: red;">Belum diisi</span>',
-    'Pekerjaan Ayah' => $user->student->father_job ? $user->student->father_job : '<span style="color: red;">Belum diisi</span>',
-    'Nama Ibu' => $user->student->mother_name ? $user->student->mother_name : '<span style="color: red;">Belum diisi</span>',
-    'Pekerjaan Ibu' => $user->student->mother_job ? $user->student->mother_job : '<span style="color: red;">Belum diisi</span>',
-    'Status Akun' => $user->student->isactive == 1 
+    'Nama Lengkap' => $user->name ?? '<span style="color: red;">Belum diisi</span>',
+    'Kelas' => $user->student && $user->student->class 
+        ? $user->student->class 
+        : '<span style="color: red;">Belum diisi</span>',
+    'Jurusan' => $user->student && $user->student->major_id 
+        ? ($user->student->major 
+            ? $user->student->major->name 
+            : '<span style="color: red;">Belum diisi</span>')
+        : '<span style="color: red;">Belum diisi</span>',
+    'Sekolah' => $user->student && $user->student->school 
+        ? $user->student->school->name 
+        : '<span style="color: red;">Belum diisi</span>',
+    'Nomor Telepon' => $user->student && $user->student->phone_number 
+        ? $user->student->phone_number 
+        : '<span style="color: red;">Belum diisi</span>',
+    'Alamat' => $user->student && $user->student->address 
+        ? $user->student->address 
+        : '<span style="color: red;">Belum diisi</span>',
+    'Nama Ayah' => $user->student && $user->student->father_name 
+        ? $user->student->father_name 
+        : '<span style="color: red;">Belum diisi</span>',
+    'Pekerjaan Ayah' => $user->student && $user->student->father_job 
+        ? $user->student->father_job 
+        : '<span style="color: red;">Belum diisi</span>',
+    'Nama Ibu' => $user->student && $user->student->mother_name 
+        ? $user->student->mother_name 
+        : '<span style="color: red;">Belum diisi</span>',
+    'Pekerjaan Ibu' => $user->student && $user->student->mother_job 
+        ? $user->student->mother_job 
+        : '<span style="color: red;">Belum diisi</span>',
+    'Status Akun' => $user->student && $user->student->is_active == 1 
         ? '<span style="color: green;">Aktif</span>' 
-        : '<span style="color: red;">Tidak Aktif</span>'
+        : '<span style="color: red;">Tidak Aktif</span>',
 ];
-$startAt = Carbon\Carbon::parse($user->student->intership_student->start_at);
-$endAt = Carbon\Carbon::parse($user->student->intership_student->end_at);
-$today = Carbon\Carbon::today();
 
-$hariMagang = $startAt->diffInDays($today) + 1;
-$sisaHariMagang = $today->diffInDays($endAt);
+if($user->student && $user->student->intership_student) {
+
+        $startAt = $user->student->intership_student->start_at 
+            ? Carbon::parse($user->student->intership_student->start_at) 
+            : null;
+        $endAt = $user->student->intership_student->end_at 
+            ? Carbon::parse($user->student->intership_student->end_at) 
+            : null;
+        $today = Carbon::today();
+
+        $hariMagang = $startAt ? $startAt->diffInDays($today) + 1 : null;
+        $sisaHariMagang = $endAt ? $today->diffInDays($endAt) : null;
+    }
+
 @endphp
 
 <style>
@@ -43,6 +73,7 @@ $sisaHariMagang = $today->diffInDays($endAt);
     }
 </style>
 <x-filament-panels::page>
+    @if ($user->student && $user->student->intership_student)
     <div class="grid-container">
         <x-filament::card class="grid-item">
             <div style="display:flex; justify-content:space-between; align-items:center;">
@@ -57,8 +88,10 @@ $sisaHariMagang = $today->diffInDays($endAt);
             </div>
         </x-filament::card>
     </div>
+    @endif
 
     <!-- Tugas Hari Ini -->
+    @if ($user->student && $user->student->intership_student)
     <x-filament::section collapsible>
         <x-slot name="heading">
             Tugas Hari Ini
@@ -81,6 +114,7 @@ $sisaHariMagang = $today->diffInDays($endAt);
                 </div>
             </x-filament::section>
         @endforeach
+    @endif
             
     </x-filament::section>
     <!-- Data Diri Siswa -->
