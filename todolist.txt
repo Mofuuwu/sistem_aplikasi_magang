@@ -27,3 +27,13 @@ urgent : sama seperti yg di note, buat pemeriksaan nilai terlebih dahulu di seti
          karena data student nya masih kosong
 untuk yg urgent sepertinya sudah, besok bisa di cek lagi, sepertinya langkah selanjutnya adalah 
 membuat create untuk student di profil
+
+
+fitur dashboard pembimbing : 
+- ( nav 1 ) - daftar siswa bimbingan, isinya dalam bentuk card -> ketika di tekan bisa belihat list tugas yg diberikan dan statusnya
+              serta melihat logbook siswa
+- ( nav 2 ) - membuat tampilan untuk membuat tugas, dan dapat memilih siswa mana yg ditugaskan
+- ( nav 3 ) - membuat pengumuman
+
+
+- untuk penilaian fiturnya masih dalam proses karena belum ada referensi

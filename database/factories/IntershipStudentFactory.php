@@ -30,4 +30,24 @@ class IntershipStudentFactory extends Factory
             'end_at' => '2025-03-10',
         ]);
     }
+    public function is2() {
+        return $this->state([
+            'id' => '2',
+            'student_id' => '2',
+            'mentor_id' => '1',
+            'work_unit_id' => '1',
+            'start_at' => '2024-12-20',
+            'end_at' => '2025-04-15',
+        ]);
+    }
+    public function is3() {
+        return $this->state([
+            'id' => '3',
+            'student_id' => '3',
+            'mentor_id' => '1',
+            'work_unit_id' => '1',
+            'start_at' => '2024-12-20',
+            'end_at' => '2025-04-15',
+        ]);
+    }
 }

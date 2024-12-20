@@ -41,13 +41,13 @@
                     {{$task->start_at}} - {{$task->end_at}}
             </p>
             <hr class=" border-gray-600">
-            <p class="text-sm text-bold mb-2 mt-6">
+            <p class="text-md font-bold mb-2 mt-6 text-primary-600">
                 Petunjuk Tugas
             </p>
             <p class="text-sm text-white border border-3 border-gray-600 px-3 py-2 rounded rounded-lg mb-4">
                 {{$task->task_description}}
             </p>
-            <p class="text-sm text-white text-bold mt-2 mb-2">
+            <p class="text-md font-bold text-primary-600 text-bold mt-2 mb-2">
                     Jawaban Anda 
             </p>
 

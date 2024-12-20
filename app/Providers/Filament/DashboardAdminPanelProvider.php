@@ -28,6 +28,7 @@ class DashboardAdminPanelProvider extends PanelProvider
             ->path('dashboard_admin')
             ->login()
             ->registration()
+            ->breadcrumbs(false)
             ->colors([
                 'primary' => Color::Violet,
             ])

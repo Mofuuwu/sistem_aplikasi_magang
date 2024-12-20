@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\AnnouncementCommentsController;
+use App\Http\Controllers\DashboardPembimbingController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TaskController;
 
@@ -19,3 +20,4 @@ Route::put('/dashboard_siswa/tugas/{id}/submittask', [TaskController::class, 'up
 
 Route::post('/dashboard_siswa/profiles/{id}/edit', [StudentController::class, 'edit'])->name('dashboard_siswa.editprofile');
 Route::post('/dashboard_siswa/profiles/create', [StudentController::class, 'create'])->name('dashboard_siswa.createprofile');
+

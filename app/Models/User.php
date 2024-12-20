@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Support\Facades\Auth;
 use Filament\Models\Contracts\HasAvatar;
 use Illuminate\Notifications\Notifiable;
@@ -52,7 +51,7 @@ class User extends Authenticatable implements  HasAvatar
         return $this->hasOne(Student::class, 'user_id');
     }
     public function mentor() {
-        return $this->belongsTo(Mentor::class);
+        return $this->hasOne(Mentor::class, 'user_id');
     }
     public function role() {
         return $this->belongsTo(ROle::class, 'role_id');

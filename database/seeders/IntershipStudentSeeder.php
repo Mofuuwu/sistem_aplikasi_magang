@@ -14,5 +14,7 @@ class IntershipStudentSeeder extends Seeder
     public function run(): void
     {
         IntershipStudent::factory()->is1()->create();
+        IntershipStudent::factory()->is2()->create();
+        IntershipStudent::factory()->is3()->create();
     }
 }

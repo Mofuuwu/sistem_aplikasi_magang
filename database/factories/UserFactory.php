@@ -65,4 +65,20 @@ class UserFactory extends Factory
             'email_verified_at' => null,
         ]);
     }
+    public function userFour():static  {
+        return $this->state([
+            'name' => 'Muhhamad Hasan Iroqi',
+            'email' => 'muhhamadhasan@gmail.com',
+            'password' => bcrypt('muhhamadhasan'),
+            'role_id' => '3'
+        ]);
+    }
+    public function userFive():static  {
+        return $this->state([
+            'name' => 'Rafif Dwi Saputra',
+            'email' => 'rafifdwisaputra@gmail.com',
+            'password' => bcrypt('rafifdwisaputra'),
+            'role_id' => '3'
+        ]);
+    }
 }

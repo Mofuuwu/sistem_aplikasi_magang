@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Models\Task;
 use App\Models\User;
+use App\Models\Mentor;
 use App\Models\Student;
 use App\Models\IntershipStudent;
 use Illuminate\Auth\Access\Response;
@@ -23,10 +24,16 @@ class TaskPolicy
      */
     public function view(User $user, Task $task): bool
     {
-        $student = Student::where('user_id', $user->id)->first(); 
-        $intershipStudent = IntershipStudent::where('student_id', $student->id)->first();
+        if ($user->role_id == '1') {
+            $intershipStudent = IntershipStudent::where('student_id', $user->student->id)->first();
+            return $task->intership_student_id == $intershipStudent->id;
+        }
+
+        else if ($user->role_id == '2') {
+            return $task->mentor_id == $user->mentor->id; 
+        }
+        return false;
     
-        return $task->intership_student_id == $intershipStudent->id || $user->role_id == '1' || $user->role_id == '2';
     }
 
     /**
@@ -42,10 +49,15 @@ class TaskPolicy
      */
     public function update(User $user, Task $task): bool
     {
-        $student = Student::where('user_id', $user->id)->first(); 
-        $intershipStudent = IntershipStudent::where('student_id', $student->id)->first();
-    
-        return $task->intership_student_id == $intershipStudent->id;
+        if ($user->role_id == '1') {
+            $intershipStudent = IntershipStudent::where('student_id', $user->student->id)->first();
+            return $task->intership_student_id == $intershipStudent->id; 
+        }
+
+        else if ($user->role_id == '2') {
+            return $task->mentor_id == $user->mentor->id; 
+        }
+        return false;
     }
 
     /**
@@ -53,7 +65,7 @@ class TaskPolicy
      */
     public function delete(User $user, Task $task): bool
     {
-        return $user->role_id === '1' || $user->role_id === '2';
+        return $user->role_id === '2';
     }
 
     /**
