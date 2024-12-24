@@ -13,7 +13,7 @@ class User extends Authenticatable implements  HasAvatar
     public function getFilamentAvatarUrl(): ?string
     {
         $student = Auth::user()->student;
-        return $student? asset('storage/profile_photos/' . $student->profile_photo) : $this->avatar_url;
+        return $student? asset('storage/profile_photos/' . $student->profile_photo) : 'https://cdn-icons-png.flaticon.com/512/3541/3541871.png';
     }
     
     use HasFactory, Notifiable;

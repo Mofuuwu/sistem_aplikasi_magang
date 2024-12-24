@@ -64,7 +64,8 @@ class TugasResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('task_header')
-                ->label('Tugas'),
+                ->label('Tugas')
+                ->limit(40),
                 Tables\Columns\TextColumn::make('task_description')
                 ->label('Deskripsi Tugas')
                 ->visibleOn('view'),

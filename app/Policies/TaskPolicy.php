@@ -24,7 +24,7 @@ class TaskPolicy
      */
     public function view(User $user, Task $task): bool
     {
-        if ($user->role_id == '1') {
+        if ($user->role_id == '3') {
             $intershipStudent = IntershipStudent::where('student_id', $user->student->id)->first();
             return $task->intership_student_id == $intershipStudent->id;
         }
@@ -49,7 +49,7 @@ class TaskPolicy
      */
     public function update(User $user, Task $task): bool
     {
-        if ($user->role_id == '1') {
+        if ($user->role_id == '3') {
             $intershipStudent = IntershipStudent::where('student_id', $user->student->id)->first();
             return $task->intership_student_id == $intershipStudent->id; 
         }

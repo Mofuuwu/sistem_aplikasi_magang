@@ -28,6 +28,7 @@ class DashboardPembimbingPanelProvider extends PanelProvider
             ->path('dashboard_pembimbing')
             ->login()
             ->registration()
+            ->brandName('Aplikasi Magang')
             ->breadcrumbs(false)
             ->colors([
                 'primary' => Color::Violet,

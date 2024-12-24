@@ -166,7 +166,7 @@ $schools = School::all();
             </x-filament::input.wrapper>
             <hr class="border-gray-600 mb-4">
             <p class="mb-2 font-bold text-sm">
-                Foto Profil
+                Foto Profil ( ukuran 1 x 1 )
             </p>
             <x-filament::input.wrapper class="mb-4">
                 <x-filament::input

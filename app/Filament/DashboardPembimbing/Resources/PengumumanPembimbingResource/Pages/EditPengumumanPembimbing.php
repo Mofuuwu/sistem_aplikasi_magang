@@ -13,7 +13,10 @@ class EditPengumumanPembimbing extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            Actions\DeleteAction::make(),
+            Actions\Action::make('back')
+                ->label('Kembali')
+                ->color('info')
+                ->url(fn () => static::getResource()::getUrl('index')),
         ];
     }
 }

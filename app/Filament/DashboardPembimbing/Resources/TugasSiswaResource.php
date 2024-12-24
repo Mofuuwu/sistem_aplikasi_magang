@@ -75,7 +75,6 @@ class TugasSiswaResource extends Resource
                 ->nullable() 
                 ->reactive() 
                 ->dehydrated() 
-                ->required(fn ($get) => $get('end_at') !== null) 
                 ->helperText('Jika tidak ada tenggat, biarkan kosong.')
                 ->columnSpan(2),
                 Forms\Components\Hidden::make('status')
@@ -106,14 +105,16 @@ class TugasSiswaResource extends Resource
                 Tables\Columns\TextColumn::make('intership_student.student.user.name')
                 ->label('Nama Siswa'),
                 Tables\Columns\TextColumn::make('task_header')
-                ->label('Tugas'),
+                ->label('Tugas')
+                ->limit(40),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(), 
-            ]);
+            ])
+            ->modifyQueryUsing(fn (Builder $query) => $query->where('mentor_id', Auth::user()->mentor->id));
     }
 
     public static function getRelations(): array
@@ -131,14 +132,5 @@ class TugasSiswaResource extends Resource
             'edit' => Pages\EditTugasSiswa::route('/{record}/edit'),
         ];
     }
-    public static function getEloquentQuery(): Builder
-{
-    // Ensure the mentor ID is retrieved from the authenticated user
-    $mentorId = Auth::user()->mentor->id;
-
-    // Return the builder instance with the condition for mentor_id if it exists
-    return Task::when($mentorId, function (Builder $query) use ($mentorId) {
-        return $query->where('mentor_id', $mentorId);
-    });
-}
+    
 }

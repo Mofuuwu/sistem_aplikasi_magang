@@ -12,7 +12,7 @@ class AnnouncementComments extends Model
     use HasFactory;
     public function user()
     {
-        return $this->belongsTo(User::class); // Mengasumsikan komentar dimiliki oleh seorang pengguna
+        return $this->belongsTo(User::class, 'user_id'); // Mengasumsikan komentar dimiliki oleh seorang pengguna
     }
 
     // Relasi ke model Announcement
