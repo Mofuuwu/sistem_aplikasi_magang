@@ -2,11 +2,13 @@
 
 namespace App\Filament\DashboardSiswa\Resources\TugasResource\Pages;
 
-use App\Filament\DashboardSiswa\Resources\TugasResource;
 use App\Models\Task;
 use Filament\Actions;
-use Filament\Resources\Pages\ViewRecord;
 use Filament\Resources\Pages\Page;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
+use Filament\Resources\Pages\ViewRecord;
+use App\Filament\DashboardSiswa\Resources\TugasResource;
 
 class ViewTugas extends Page
 {
@@ -25,6 +27,16 @@ class ViewTugas extends Page
     }
     public function mount($record)
     {
-        $this->task = Task::findOrFail($record);
+        // Ambil task berdasarkan ID
+        $task = Task::findOrFail($record);
+
+        // Periksa akses menggunakan Gate
+        if (!Gate::allows('student-tasks-policy', $task)) {
+            abort(403, 'Anda tidak memiliki akses untuk melihat tugas ini');
+        }
+
+        // Set data task ke properti
+        $this->task = $task;
     }
+
 }

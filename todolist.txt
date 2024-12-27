@@ -37,3 +37,7 @@ fitur dashboard pembimbing :
 
 
 - untuk penilaian fiturnya masih dalam proses karena belum ada referensi
+
+
+sabtu 28 desember
+-- membuat authorization pada announcement

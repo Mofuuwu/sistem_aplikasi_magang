@@ -1,11 +1,12 @@
 <?php
 namespace App\Filament\DashboardSiswa\Resources\PengumumanResource\Pages;
 
-use App\Filament\DashboardSiswa\Resources\PengumumanResource;
 use Filament\Actions;
-use Filament\Resources\Pages\Page;
 use App\Models\Announcement;
+use Filament\Resources\Pages\Page;
 use App\Models\AnnouncementComments;
+use Illuminate\Support\Facades\Gate;
+use App\Filament\DashboardSiswa\Resources\PengumumanResource;
 
 class ViewPengumuman extends Page
 {
@@ -29,8 +30,11 @@ class ViewPengumuman extends Page
 
     public function mount($record)
     {
-        // Ambil pengumuman berdasarkan ID
         $this->announcement = Announcement::findOrFail($record);
         $this->comments = AnnouncementComments::where('announcement_id', $record)->get();
+
+        if (!Gate::allows('student-announcements-policy', $this->announcement)) {
+            abort(403, 'Anda tidak memiliki akses untuk melihat pengumuman ini');
+        }
     }
 }

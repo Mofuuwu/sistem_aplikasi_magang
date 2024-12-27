@@ -2,13 +2,14 @@
 
 namespace App\Filament\DashboardPembimbing\Resources\DaftarSiswaBimbinganResource\Pages;
 
-use App\Filament\DashboardPembimbing\Resources\DaftarSiswaBimbinganResource;
-use App\Models\IntershipStudent;
-use App\Models\Student;
 use Filament\Actions;
-use Filament\Resources\Pages\ListRecords;
+use App\Models\Student;
+use App\Models\IntershipStudent;
 use Filament\Resources\Pages\Page;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
+use Filament\Resources\Pages\ListRecords;
+use App\Filament\DashboardPembimbing\Resources\DaftarSiswaBimbinganResource;
 
 class ViewProfilSiswa extends Page
 {
@@ -29,5 +30,8 @@ class ViewProfilSiswa extends Page
     }
     public function mount($record) {
         $this->student = Student::findOrFail($record);
+        if (!Gate::allows('mentor-profile-student-policy', $this->student)) {
+            abort(403, 'Anda tidak memiliki akses untuk melihat profil siswa ini');
+        }
     }
 }

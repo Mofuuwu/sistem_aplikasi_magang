@@ -13,10 +13,11 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\DashboardPembimbing\Resources\DaftarSiswaBimbinganResource\Pages;
 use App\Filament\DashboardPembimbing\Resources\DaftarSiswaBimbinganResource\RelationManagers;
+use App\Models\Logbook;
 
 class DaftarSiswaBimbinganResource extends Resource
 {
-    protected static ?string $model = Student::class;
+    protected static ?string $model = Logbook::class;
     protected static ?string $navigationLabel = 'Daftar Siswa Bimbingan';
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
     protected static ?string $slug = 'daftar_siswa_bimbingan';
@@ -25,7 +26,7 @@ class DaftarSiswaBimbinganResource extends Resource
     {
         return $form
             ->schema([
-                //
+                
             ]);
     }
 
@@ -33,19 +34,32 @@ class DaftarSiswaBimbinganResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('date')
+                ->label('Tanggal'),
+                Tables\Columns\TextColumn::make('presence')
+                ->label('Keterangan')
+                ->badge()
+                ->color(fn (string $state = null): string => match ($state) {
+                    'sakit' => 'danger',
+                    'izin' => 'warning',
+                    'hadir' => 'success',
+                    default => 'info',
+                })
+                ->default('belum diisi'),
+                Tables\Columns\TextColumn::make('information')
+                ->label('Tambahan')
+                ->default('tidak ada'),
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
             ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
-            ]);
+            ->modifyQueryUsing(function (Builder $query) {
+                $intershipStudentId = request()->route('record'); 
+                $query->where('intership_student_id', $intershipStudentId)
+                ->orderBy('date', 'desc');
+            });
     }
 
     public static function getRelations(): array

@@ -114,7 +114,15 @@ class TugasSiswaResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make(), 
             ])
-            ->modifyQueryUsing(fn (Builder $query) => $query->where('mentor_id', Auth::user()->mentor->id));
+            ->modifyQueryUsing(function (Builder $query) {
+                $mentorId = Auth::user()->mentor->id;
+    
+                // Tambahkan kondisi di sini
+                $query->where('mentor_id', $mentorId)
+                      ->whereHas('intership_student', function ($subQuery) use ($mentorId) {
+                          $subQuery->where('mentor_id', $mentorId);
+                      });
+            });
     }
 
     public static function getRelations(): array

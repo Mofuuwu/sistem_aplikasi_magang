@@ -76,8 +76,6 @@ class PengumumanResource extends Resource
     {
         return [
             'index' => Pages\ListPengumuman::route('/'),
-            'create' => Pages\CreatePengumuman::route('/create'),
-            'edit' => Pages\EditPengumuman::route('/{record}/edit'),
             'view' => Pages\ViewPengumuman::route('/{record}'),
         ];
     }

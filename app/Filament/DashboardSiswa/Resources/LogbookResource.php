@@ -55,27 +55,20 @@ class LogbookResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('date')
                 ->label('Tanggal')
-                ->sortable(),
-                // Tables\Columns\TextColumn::make('presence')
-                // ->label('Keterangan')
-                // ->badge()
-                // ->color(fn (string $state): string => match ($state) {
-                //     'sakit' => 'danger',
-                //     'izin' => 'warning',
-                //     'hadir' => 'success',
-                // }),
+                ->searchable(),
                 Tables\Columns\SelectColumn::make('presence')
                 ->options([
                     'sakit' => 'Sakit',
                     'izin' => 'Izin',
                     'hadir' => 'Hadir',
-                ])->placeholder('Pilih Presensi'),
+                ])->placeholder('Pilih Presensi')
+                ->label('Keterangan'),
                 Tables\Columns\TextInputColumn::make('information')
                 ->label('Tambahan'),
                 
 
             ])
-            ->modifyQueryUsing(fn (Builder $query) => $query->where('intership_student_id', IntershipStudent::where('student_id', Student::where('user_id', Auth::id())->first()?->id)->first()?->id))
+            ->modifyQueryUsing(fn (Builder $query) => $query->where('intership_student_id', Auth::user()->student->intership_student->id)->orderBy('date', 'desc'))
             ->filters([
                 //
             ])
@@ -87,6 +80,7 @@ class LogbookResource extends Resource
             ])
             ->bulkActions([
             ])
+            ->searchPlaceholder('Cari tanggal');
             ;
     }
 

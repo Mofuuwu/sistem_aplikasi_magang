@@ -13,12 +13,8 @@
         </div>
     </x-filament::section>
 @endif
-<div id="popup" class="bg-gray-800 bg-opacity-50 flex justify-center items-center">
-        <div class="bg-white dark:bg-gray-900 rounded-lg w-full custom-width h-[calc(66vh)] flex flex-col p-6 relative">
-            <!-- Header -->
-            <x-slot name="heading">
-                User details
-            </x-slot>
+<x-filament::section id="popup">
+        <div class="bg-white dark:bg-gray-900 rounded-lg w-full h-[calc(66vh)] flex flex-col relative">
             <div class="flex justify-between items-center">
                 <h3 color="primary" id="popup-title" class="text-lg font-bold text-primary-600">
                     {{$task->task_header}}
@@ -44,37 +40,66 @@
             <p class="text-md font-bold mb-2 mt-6 text-primary-600">
                 Petunjuk Tugas
             </p>
-            <p class="text-sm text-white border border-3 border-gray-600 px-3 py-2 rounded rounded-lg mb-4">
+            <p class="text-sm border border-3 border-gray-600 px-3 py-2 rounded rounded-lg mb-4">
                 {{$task->task_description}}
             </p>
+        </div>
+</x-filament::section>
+<div id="popup" class="bg-gray-800 bg-opacity-50 flex justify-center items-center">
+        <div class="bg-white dark:bg-gray-900 rounded-lg w-full custom-width h-[calc(66vh)] flex flex-col p-6 relative">
             <p class="text-md font-bold text-primary-600 text-bold mt-2 mb-2">
                     Jawaban Anda 
             </p>
 
             @if ($task->status == 'belum selesai')
-
-            <form  method="post" action="{{ route('dashboard_siswa.submittask', $task->id) }}">
-                @csrf
-                @method('PUT')
-                <x-filament::input.wrapper>
-                    <x-filament::input
-                        type="text"
-                        placeholder="Masukkan Link Drive Disini"
-                        name="response"
-                        required
-                    />
-                </x-filament::input.wrapper>
-                <div class="flex justify-end mt-6">
-                    <x-filament::button
-                            type="submit"
-                            class="w-32"
-                            style="padding: 8px 16px;"
-                            color="primary"
-                        >
-                            Kirim
-                    </x-filament::button>
-                </div>
-            </form>
+                @if ($task->response != null)
+                    <form  method="post" action="{{ route('dashboard_siswa.submittask', $task->id) }}">
+                        @csrf
+                        @method('PUT')
+                        <x-filament::input.wrapper>
+                            <x-filament::input
+                                type="text"
+                                placeholder="Masukkan Link Drive Disini"
+                                value="{{$task->response}}"
+                                name="response"
+                                required
+                            />
+                        </x-filament::input.wrapper>
+                        <div class="flex justify-end mt-6">
+                            <x-filament::button
+                                    type="submit"
+                                    class="w-32"
+                                    style="padding: 8px 16px;"
+                                    color="primary"
+                                >
+                                    Kirim
+                            </x-filament::button>
+                        </div>
+                    </form>
+                @else
+                    <form  method="post" action="{{ route('dashboard_siswa.submittask', $task->id) }}">
+                        @csrf
+                        @method('PUT')
+                        <x-filament::input.wrapper>
+                            <x-filament::input
+                                type="text"
+                                placeholder="Masukkan Link Drive Disini"
+                                name="response"
+                                required
+                            />
+                        </x-filament::input.wrapper>
+                        <div class="flex justify-end mt-6">
+                            <x-filament::button
+                                    type="submit"
+                                    class="w-32"
+                                    style="padding: 8px 16px;"
+                                    color="primary"
+                                >
+                                    Kirim
+                            </x-filament::button>
+                        </div>
+                    </form>
+                @endif
             @elseif($task->status == 'selesai')
                 <x-filament::input.wrapper>
                     <x-filament::input
@@ -86,7 +111,7 @@
                 </x-filament::input.wrapper>
             @endif
         </div>
-    </div>
+</div>
 </x-filament::page>
 <script>
     function closeAlert() {

@@ -71,10 +71,11 @@
                 <div class="card-content">
                     <p class="text-md"><b>{{$is->student->user->name}}</b></p>
                     <p class="text-sm"><i>{{$is->student->major->name}}</i></p>
-                    <div class="row martop-1">
+                    <div class="row martop-1 flex flex-wrap">
                         <x-filament::button class="text-sm btn " tag="a" href="daftar_siswa_bimbingan/profil_siswa/{{$is->student->id}}" color="success">Profil</x-filament::button>
                         <x-filament::button class="text-sm btn " tag="a" href="daftar_siswa_bimbingan/tugas_siswa/{{$is->student->id}}" color="primary">Tugas</x-filament::button>
-                        <x-filament::button class="text-sm btn " tag="a" href="daftar_siswa_bimbingan/logbook_siswa/{{$is->student->id}}" color="danger">Logbook</x-filament::button>
+                        <x-filament::button class="text-sm btn " tag="a" href="daftar_siswa_bimbingan/logbook_siswa/{{$is->student->id}}" color="info">Logbook</x-filament::button>
+                        <x-filament::button class="text-sm btn " tag="a" href="daftar_siswa_bimbingan/logbook_siswa/{{$is->student->id}}" color="danger">Evaluasi</x-filament::button>
                     </div>
                 </div>
                 </div>

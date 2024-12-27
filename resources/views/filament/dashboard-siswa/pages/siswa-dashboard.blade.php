@@ -107,7 +107,7 @@ if($user->student && $user->student->intership_student) {
                     </div>
                     <!-- Kolom Kanan -->
                     <div class="text-right">
-                        <x-filament::button href="dashboard_siswa/tugas/{{$task->id}}/edit" tag="a">
+                        <x-filament::button href="dashboard_siswa/tugas/{{$task->id}}" tag="a">
                             Lihat
                         </x-filament::button>
                     </div>

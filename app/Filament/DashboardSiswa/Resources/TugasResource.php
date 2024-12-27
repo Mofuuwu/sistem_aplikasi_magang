@@ -4,19 +4,22 @@ namespace App\Filament\DashboardSiswa\Resources;
 
 use Filament\Forms;
 use App\Models\Task;
-use Filament\Tables;
+use App\Models\User;
 
+use Filament\Tables;
 use App\Models\Student;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
+use App\Models\IntershipStudent;
 use Filament\Resources\Resource;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Filament\Resources\Components\Tab;
+use Filament\Support\Enums\IconPosition;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\DashboardSiswa\Resources\TugasResource\Pages;
 use App\Filament\DashboardSiswa\Resources\TugasResource\RelationManagers;
-use App\Models\IntershipStudent;
-use Filament\Support\Enums\IconPosition;
+use Illuminate\Database\Eloquent\Model;
 
 class TugasResource extends Resource
 {
@@ -72,7 +75,8 @@ class TugasResource extends Resource
                 Tables\Columns\TextColumn::make('start_at')
                 ->label('Dimulai'),
                 Tables\Columns\TextColumn::make('end_at')
-                ->label('Tenggat'),
+                ->label('Tenggat')
+                ->default('tidak ada'),
             ])
             ->filters([
                 //
@@ -81,7 +85,7 @@ class TugasResource extends Resource
                 Tables\Actions\ViewAction::make()
                 ->label('Lihat Tugas')
                 ->icon('heroicon-o-eye')
-                ->color('info')
+                ->color('primary')
             ])
             ->bulkActions([
                 
@@ -107,12 +111,12 @@ class TugasResource extends Resource
     {
         return [
             'index' => Pages\ListTugas::route('/'),
-            'edit' => Pages\EditTugas::route('/{record}/edit'),
+            // 'edit' => Pages\EditTugas::route('/{record}/edit'),
             'view' => Pages\ViewTugas::route('/{record}'),
         ];
     }
     public static function canAccess(): bool
     {
         return Auth::user() && Auth::user()->student && Auth::user()->student->is_active == '1';
-    }
+    }    
 }
