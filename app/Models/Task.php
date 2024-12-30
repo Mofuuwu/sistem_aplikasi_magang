@@ -12,7 +12,7 @@ class Task extends Model
     use HasFactory, Notifiable;
     protected $guarded = [];
     public function evaluation() {
-        return $this->belongsTo(Evaluation::class);
+        return $this->hasOne(Evaluation::class, 'task_id');
     }
     public function intership_student() {
         return $this->belongsTo(IntershipStudent::class, 'intership_student_id');

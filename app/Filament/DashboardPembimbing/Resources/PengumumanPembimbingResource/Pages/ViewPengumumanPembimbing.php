@@ -2,12 +2,13 @@
 
 namespace App\Filament\DashboardPembimbing\Resources\PengumumanPembimbingResource\Pages;
 
-use App\Filament\DashboardPembimbing\Resources\PengumumanPembimbingResource;
-use App\Models\Announcement;
-use App\Models\AnnouncementComments;
 use Filament\Actions;
-use Filament\Resources\Pages\ListRecords;
+use App\Models\Announcement;
 use Filament\Resources\Pages\Page;
+use App\Models\AnnouncementComments;
+use Illuminate\Support\Facades\Gate;
+use Filament\Resources\Pages\ListRecords;
+use App\Filament\DashboardPembimbing\Resources\PengumumanPembimbingResource;
 
 class ViewPengumumanPembimbing extends Page
 {
@@ -29,5 +30,8 @@ class ViewPengumumanPembimbing extends Page
     public function mount($record) {
         $this->pengumuman = Announcement::findOrFail($record);
         $this->komentar = AnnouncementComments::where('announcement_id', $this->pengumuman->id)->get();
+        if (!Gate::allows('mentor-announcement-policy', $this->pengumuman)) {
+            abort(403, 'Anda tidak memiliki akses untuk melihat pengumuman ini');
+        }
     }
 }

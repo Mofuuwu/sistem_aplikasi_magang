@@ -64,11 +64,7 @@ class PengumumanPembimbingResource extends Resource
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\ViewAction::make(),
             ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
-            ]);
+            ->modifyQueryUsing(fn (Builder $query) => $query->where('mentor_id', Auth::user()->mentor->id));
     }
 
     public static function getRelations(): array

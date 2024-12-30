@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('intership_student_id');
             $table->string('type')->comment('sikap / tugas');
-            $table->string('task_id')->nullable();
-            $table->integer('score');
-            $table->date('evaluation_date');
+            $table->unsignedBigInteger('task_id')->nullable()->default(null);
+            $table->integer('score')->nullable()->default(null);
+            $table->timestamps();
         });
     }
 

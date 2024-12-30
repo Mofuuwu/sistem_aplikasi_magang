@@ -39,5 +39,8 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('mentor-profile-student-policy', function (User $user, Student $student) {
             return $student->intership_student->mentor_id == $user->mentor->id;
         });
+        Gate::define('mentor-announcement-policy', function (User $user, Announcement $announcement) {
+            return $user->mentor->id == $announcement->mentor_id;
+        });
     }
 }

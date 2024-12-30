@@ -40,6 +40,15 @@ class TugasSiswaResource extends Resource
                 ->columnSpan(2)
                 ->searchable()
                 ->required(),
+                Forms\Components\Select::make('status')
+                ->options([
+                    'belum selesai' => 'Belum Selesai',
+                    'selesai' => 'Selesai',
+                ])
+                ->default('belum selesai')
+                ->visibleOn('edit')
+                ->columnSpan(2)
+                ->required(),
                 Forms\Components\Hidden::make('mentor_id')
                 ->default(Auth::user()->mentor->id)
                 ->dehydrated(),
@@ -77,9 +86,6 @@ class TugasSiswaResource extends Resource
                 ->dehydrated() 
                 ->helperText('Jika tidak ada tenggat, biarkan kosong.')
                 ->columnSpan(2),
-                Forms\Components\Hidden::make('status')
-                ->default('belum selesai')
-                ->dehydrated(),
                 Forms\Components\Textarea::make('response')
                 ->label('Jawaban')
                 ->columnSpan(2)

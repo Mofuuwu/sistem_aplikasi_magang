@@ -6,38 +6,13 @@ todolist saya :
 3. membuat dashboard untuk pembimbing
 
 
-membuat tampilan "magang telah selesai jika waktunya habis pada dashboard siswa"
-
-logic ketika user pertama kali masuk aplikasi : 
-1. ketika user baru pertama kali membuka aplikasi, mereka hanya akan ditampilkan halaman 
-   beranda kosong yg berisi 1 section dengan tulisan "silahkan isi data diri anda",
-2. kemudian jika user menekan tombol tersebut, maka ia akan diarahkan ke halaman "create" untuk 
-   menambahkan data siswa baru dengan user_id saat ini
-3. mereka bisa mengkosongkan kolom yg tidak ingin mereka isi untuk dsiisi nanti
-4. ketika sudah selesai mengisi, siswa tetap ditampilkan halaman dashboard sampai status akunnya 
-   diubah menjadi aktif oleh admin
-5. ketika status siswa sudah aktif dan user sudah merupakan siswa magang, ketika ia mengklik
-   tombol profile, maka akan diarahkan ke halaman create dan bukan edit
-
-note : buat juga pemeriksaan nilai pada tampilan blade, sehingga jika nilai kolom yg diambil null,
-       maka tidak akan terjadi error pada sistem
-      
-urgent : sama seperti yg di note, buat pemeriksaan nilai terlebih dahulu di setiap halaman agar 
-         ketika ada user yg baru registrasi dan mengakses halaman, maka halaman tidak akan error 
-         karena data student nya masih kosong
-untuk yg urgent sepertinya sudah, besok bisa di cek lagi, sepertinya langkah selanjutnya adalah 
-membuat create untuk student di profil
-
-
-fitur dashboard pembimbing : 
-- ( nav 1 ) - daftar siswa bimbingan, isinya dalam bentuk card -> ketika di tekan bisa belihat list tugas yg diberikan dan statusnya
-              serta melihat logbook siswa
-- ( nav 2 ) - membuat tampilan untuk membuat tugas, dan dapat memilih siswa mana yg ditugaskan
-- ( nav 3 ) - membuat pengumuman
-
+membuat tampilan "magang telah selesai jika waktunya habis pada dashboard siswa"       
 
 - untuk penilaian fiturnya masih dalam proses karena belum ada referensi
 
-
 sabtu 28 desember
 -- membuat authorization pada announcement
+
+
+--tanya untuk fitur evaluasi penilaian nya setiap ada tugas atau setiap jangka waktu tertentu
+-- fungsi memilih task_id pada resource evaluation bagian penilaian tugas belum berfungsi

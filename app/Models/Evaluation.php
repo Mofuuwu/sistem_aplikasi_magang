@@ -10,6 +10,7 @@ class Evaluation extends Model
 {
     use HasFactory, Notifiable;
     protected $guarded = [];
+    public $timestamps = false;
     public function intership_student() {
         //1 nilai hanya untuk 1 siswa, siswa dapat memiliki banyak nilai
         return $this->belongsTo(IntershipStudent::class, 'intership_student_id');
