@@ -65,7 +65,7 @@
         if (alertElement) {
             alertElement.style.transition = "opacity 0.3s ease";
             alertElement.style.opacity = "0";
-            setTimeout(() => alertElement.style.display = "none", 300); // Sembunyikan elemen setelah transisi
+            setTimeout(() => alertElement.style.display = "none", 300); 
         }
     }
 </script>

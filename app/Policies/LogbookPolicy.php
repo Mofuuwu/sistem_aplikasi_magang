@@ -4,10 +4,7 @@ namespace App\Policies;
 
 use App\Models\User;
 use App\Models\Logbook;
-use App\Models\Student;
-use App\Models\IntershipStudent;
-use Illuminate\Auth\Access\Response;
-use Illuminate\Support\Facades\Auth;
+use App\Models\InternshipStudent;
 
 class LogbookPolicy
 {
@@ -30,16 +27,15 @@ public function view(User $user, Logbook $logbook): bool
 {
     // Cek untuk role siswa
     if ($user->role_id == '3') {
-        // Ambil intership student berdasarkan student_id
-        $intershipStudent = IntershipStudent::where('student_id', $user->student->id)->first();
+        $internshipStudent = InternshipStudent::where('student_id', $user->student->id)->first();
         
         // Cek apakah logbook milik siswa ini
-        return $logbook->intership_student_id == $intershipStudent->id;
+        return $logbook->internship_student_id == $internshipStudent->id;
     }
 
     // Cek untuk role pembimbing
     else if ($user->role_id == '2') {
-        return $logbook->intership_student->mentor_id == $user->mentor->id;
+        return $logbook->internship_student->mentor_id == $user->mentor->id;
     }
 
     // Jika tidak memenuhi salah satu kondisi, akses tidak diizinkan
@@ -53,8 +49,8 @@ public function view(User $user, Logbook $logbook): bool
 public function update(User $user, Logbook $logbook): bool
 {
     if ($user->role_id == '3') {
-        $intershipStudent = IntershipStudent::where('student_id', $user->student->id)->first();
-        return $logbook->intership_student_id == $intershipStudent->id;
+        $internshipStudent = InternshipStudent::where('student_id', $user->student->id)->first();
+        return $logbook->internship_student_id == $internshipStudent->id;
     }
 
     else if ($user->role_id == '2') {
@@ -83,8 +79,8 @@ public function update(User $user, Logbook $logbook): bool
     public function delete(User $user, Logbook $logbook): bool
     {
         if ($user->role_id == '3') {
-        $intershipStudent = IntershipStudent::where('student_id', $user->student->id)->first();
-        return $logbook->intership_student_id == $intershipStudent->id;
+        $internshipStudent = InternshipStudent::where('student_id', $user->student->id)->first();
+        return $logbook->internship_student_id == $internshipStudent->id;
     }
 
         else if ($user->role_id == '2') {

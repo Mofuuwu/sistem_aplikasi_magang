@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('evaluations', function (Blueprint $table) {
             $table->id();
-            $table->string('intership_student_id');
+            $table->string('internship_student_id');
             $table->string('type')->comment('sikap / tugas');
             $table->unsignedBigInteger('task_id')->nullable()->default(null);
             $table->integer('score')->nullable()->default(null);

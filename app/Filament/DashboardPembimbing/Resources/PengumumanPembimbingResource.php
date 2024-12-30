@@ -8,14 +8,10 @@ use Filament\Forms\Form;
 use Filament\Tables\Table;
 use App\Models\Announcement;
 use Filament\Resources\Resource;
-use App\Models\PengumumanPembimbing;
 use Illuminate\Support\Facades\Auth;
 use Filament\Tables\Contracts\HasTable;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\DashboardPembimbing\Resources\PengumumanPembimbingResource\Pages;
-use App\Filament\DashboardPembimbing\Resources\PengumumanPembimbingResource\RelationManagers;
-use Filament\Forms\Components\Grid;
 
 class PengumumanPembimbingResource extends Resource
 {

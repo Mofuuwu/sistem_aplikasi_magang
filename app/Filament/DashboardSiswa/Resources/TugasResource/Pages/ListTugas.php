@@ -3,9 +3,8 @@
 namespace App\Filament\DashboardSiswa\Resources\TugasResource\Pages;
 
 use App\Models\Task;
-use Filament\Actions;
 use App\Models\Student;
-use App\Models\IntershipStudent;
+use App\Models\InternshipStudent;
 use Illuminate\Support\Facades\Auth;
 use Filament\Resources\Components\Tab;
 use Filament\Resources\Pages\ListRecords;
@@ -35,8 +34,8 @@ class ListTugas extends ListRecords
                 badge: function() {
                     $user = Auth::user();
                     $student = Student::where('user_id', $user->id)->first();
-                    $intershipStudent = IntershipStudent::where('student_id', $student->id)->first();
-                    return Task::where('intership_student_id', $intershipStudent->id)->where('status', 'belum selesai')->count();
+                    $internshipStudent = InternshipStudent::where('student_id', $student->id)->first();
+                    return Task::where('internship_student_id', $internshipStudent->id)->where('status', 'belum selesai')->count();
                 }
             )
             ->badgeColor('warning'),
@@ -49,8 +48,8 @@ class ListTugas extends ListRecords
                 badge: function() {
                     $user = Auth::user();
                     $student = Student::where('user_id', $user->id)->first();
-                    $intershipStudent = IntershipStudent::where('student_id', $student->id)->first();
-                    return Task::where('intership_student_id', $intershipStudent->id)->where('status', 'selesai')->count();
+                    $internshipStudent = InternshipStudent::where('student_id', $student->id)->first();
+                    return Task::where('internship_student_id', $internshipStudent->id)->where('status', 'selesai')->count();
                 }
             )
             ->badgeColor('success'),

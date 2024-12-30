@@ -4,16 +4,12 @@ namespace App\Filament\DashboardPembimbing\Resources\DaftarSiswaBimbinganResourc
 
 use Filament\Actions;
 use App\Models\Student;
-use App\Models\IntershipStudent;
 use Filament\Resources\Pages\Page;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
-use Filament\Resources\Pages\ListRecords;
 use App\Filament\DashboardPembimbing\Resources\DaftarSiswaBimbinganResource;
 
 class ViewProfilSiswa extends Page
 {
-    public $intership_students;
     public $student;
     protected static string $resource = DaftarSiswaBimbinganResource::class;
     protected static ?string $title = 'Profil Siswa';

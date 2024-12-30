@@ -4,7 +4,7 @@ namespace App\Filament\DashboardPembimbing\Resources\PenilaianSiswaResource\Page
 
 use Filament\Actions;
 use App\Models\Evaluation;
-use App\Models\IntershipStudent;
+use App\Models\InternshipStudent;
 use Illuminate\Support\Facades\Auth;
 use Filament\Resources\Pages\ListRecords;
 use App\Filament\DashboardPembimbing\Resources\PenilaianSiswaResource;
@@ -17,7 +17,7 @@ class ViewPenilaianSikap extends ListRecords
     public function createEvaluations()
     {
         // Ambil data siswa berdasarkan user yang sedang login
-        $studentData = IntershipStudent::where('mentor_id', Auth::user()->mentor->id)
+        $studentData = InternshipStudent::where('mentor_id', Auth::user()->mentor->id)
             ->first(); // Sesuaikan logika ini dengan kebutuhan Anda untuk mendapatkan data siswa
 
         if (!$studentData) {
@@ -27,7 +27,7 @@ class ViewPenilaianSikap extends ListRecords
 
         // Menambahkan data evaluasi
         Evaluation::create([
-            'intership_student_id' => $studentData->id,
+            'internship_student_id' => $studentData->id,
             'type' => 'sikap',
             'task_id' => null, // Karena ini penilaian sikap
             'score' => null,   // Nilai untuk penilaian sikap, sesuaikan jika perlu
@@ -69,7 +69,7 @@ class ViewPenilaianSikap extends ListRecords
 
         // Filter data berdasarkan mentor, type = "sikap", dan ID siswa dari URL
         return Evaluation::query()
-            ->where('intership_student_id',$studentId)
+            ->where('internship_student_id',$studentId)
             ->where('type', 'sikap');
     }
 }

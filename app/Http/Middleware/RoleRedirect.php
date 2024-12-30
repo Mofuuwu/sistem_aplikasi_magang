@@ -34,7 +34,7 @@ class RoleRedirect
             }
         }
 
-        // Lanjutkan request jika semuanya sesuai
+        // Lanjutkan request jika semuanya selesai
         return $next($request);
     }
 }

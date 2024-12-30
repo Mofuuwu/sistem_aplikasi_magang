@@ -1,34 +1,34 @@
 <x-filament::page>
     <style>
         .logbook-table {
-            width: 100%; /* Mengatur tabel agar memenuhi lebar container */
-            border-collapse: collapse; /* Agar border antar sel lebih rapat */
+            width: 100%; 
+            border-collapse: collapse; 
         }
 
         .logbook-table th, .logbook-table td {
-            padding: 0.75rem 1.25rem; /* Padding untuk cell */
+            padding: 0.75rem 1.25rem; 
             text-align: left;
-            border-bottom: 1px solid #D1D5DB; /* Menambahkan garis di bawah setiap sel dengan warna yang lebih netral */
+            border-bottom: 1px solid #D1D5DB; 
         }
 
         .logbook-table thead {
-            background-color: var(--base-200); /* Warna header menyesuaikan tema */
+            background-color: var(--base-200);
         }
 
         .logbook-table tbody tr {
-            background-color: var(--base-100); /* Warna latar belakang baris data */
+            background-color: var(--base-100);
         }
 
         .logbook-table tbody tr:hover {
-            background-color: var(--base-200); /* Warna saat hover menyesuaikan tema */
+            background-color: var(--base-200);
         }
 
         .logbook-table td {
-            color: var(--base-content); /* Warna teks sesuai tema */
+            color: var(--base-content); 
         }
 
         .logbook-table th {
-            color: var(--base-content); /* Warna teks header sesuai tema */
+            color: var(--base-content); 
             font-weight: 600;
         }
     </style>

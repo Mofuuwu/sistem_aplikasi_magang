@@ -21,7 +21,7 @@ class WorkUnit extends Model
     public function mentors(){
         return $this->hasMany(Mentor::class);
     }
-    public function intership_students() {
-        return $this->hasMany(IntershipStudent::class);
+    public function internship_students() {
+        return $this->hasMany(InternshipStudent::class);
     }
 }

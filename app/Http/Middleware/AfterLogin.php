@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\IntershipStudent;
+use App\Models\InternshipStudent;
 use App\Models\Student;
 use Closure;
 use Illuminate\Http\Request;
@@ -27,9 +27,9 @@ class AfterLogin
                 case 3: 
                     $student = Student::where('user_id', Auth::id())->first();
                     if($student) {
-                        $intershipStudent = IntershipStudent::where('id', $student->intership_student_id)->first();
-                        if ($intershipStudent) {
-                            session(['student_id' => $student->id, 'intership_student_id' => $intershipStudent->id]);
+                        $internshipStudent = InternshipStudent::where('id', $student->internship_student_id)->first();
+                        if ($internshipStudent) {
+                            session(['student_id' => $student->id, 'internship_student_id' => $internshipStudent->id]);
                         } else {
                             session(['student_id' => $student->id]);
                         }

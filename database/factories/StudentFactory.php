@@ -17,7 +17,7 @@ class StudentFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            
         ];
     }
     public function student1() {

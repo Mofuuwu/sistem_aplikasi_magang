@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class PlacementLocation extends Model
 {
-    /** @use HasFactory<\Database\Factories\PlacementLocationFactory> */
     use HasFactory, Notifiable;
     public $timestamps = false;
     protected $guarded = [];

@@ -3,18 +3,13 @@
 namespace App\Filament\DashboardPembimbing\Resources;
 
 use Filament\Forms;
-use App\Models\Task;
 use Filament\Tables;
 use Filament\Forms\Form;
 use App\Models\Evaluation;
 use Filament\Tables\Table;
-use App\Models\PenilaianSiswa;
 use Filament\Resources\Resource;
-use App\Models\IntershipStudent;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Models\InternshipStudent;
 use App\Filament\DashboardPembimbing\Resources\PenilaianSiswaResource\Pages;
-use App\Filament\DashboardPembimbing\Resources\PenilaianSiswaResource\RelationManagers;
 
 class PenilaianSiswaResource extends Resource
 {
@@ -31,7 +26,7 @@ class PenilaianSiswaResource extends Resource
             ->schema([
                 Forms\Components\Placeholder::make('')
                 ->label('Beri Penilaian Untuk '),
-                Forms\Components\Hidden::make('intership_student_id')
+                Forms\Components\Hidden::make('internship_student_id')
                 ->default($internshipStudent ? $internshipStudent->id : null),
                 Forms\Components\Select::make('type')
                 ->label('Tipe Penilaian')
@@ -42,10 +37,10 @@ class PenilaianSiswaResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('intership_student.student.user.name')
+                Tables\Columns\TextColumn::make('internship_student.student.user.name')
                     ->label('Nama'),
                 // ->options(function() {
-                //     $students = \App\Models\IntershipStudent::with('student.user') 
+                //     $students = \App\Models\InternshipStudent::with('student.user') 
                 //         ->get()
                 //         ->pluck('student.user.name', 'student.id'); 
                 //     return $students->toArray();
@@ -55,12 +50,12 @@ class PenilaianSiswaResource extends Resource
                 Tables\Columns\TextColumn::make('task_id')
                     ->label('Tugas')
                     // ->options(function (): array {
-                    //     $intershipStudentId = request()->route('record'); // Ambil ID dari URL
-                    //     if (!$intershipStudentId) {
+                    //     $internshipStudentId = request()->route('record'); // Ambil ID dari URL
+                    //     if (!$internshipStudentId) {
                     //         return [];
                     //     }
 
-                    //     return Task::where('intership_student_id', $intershipStudentId)
+                    //     return Task::where('internship_student_id', $internshipStudentId)
                     //         ->pluck('task_header', 'id')
                     //         ->toArray();
                     // }),

@@ -8,9 +8,6 @@ use App\Models\Mentor;
 
 class MentorSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
         Mentor::factory()->mentor1()->create();

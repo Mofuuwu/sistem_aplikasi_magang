@@ -59,7 +59,7 @@ $kolomData = [
                 width: 30%;
             }
         }
-        /* Media query untuk layar kecil */
+        
         @media (max-width: 768px) {
             .flex-column {
                 flex-direction: column;
@@ -67,7 +67,7 @@ $kolomData = [
             }
 
             .vertical-line {
-                display: none; /* Menyembunyikan garis vertikal pada layar kecil */
+                display: none; 
             }
 
             

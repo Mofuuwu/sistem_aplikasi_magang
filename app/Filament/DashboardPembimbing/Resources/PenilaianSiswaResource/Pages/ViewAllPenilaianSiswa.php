@@ -5,8 +5,6 @@ namespace App\Filament\DashboardPembimbing\Resources\PenilaianSiswaResource\Page
 use App\Filament\DashboardPembimbing\Resources\PenilaianSiswaResource;
 use Filament\Resources\Pages\ListRecords;
 use Filament\Actions;
-use App\Models\IntershipStudent;
-use Illuminate\Support\Facades\Auth;
 
     class ViewAllPenilaianSiswa extends ListRecords {
     protected static string $resource = PenilaianSiswaResource::class;

@@ -6,12 +6,9 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-        Schema::create('intership_students', function (Blueprint $table) {
+        Schema::create('internship_students', function (Blueprint $table) {
             $table->id(); // Primary key as bigInteger
             $table->unsignedBigInteger('student_id');
             $table->unsignedBigInteger('mentor_id'); // Ensure this references another table
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('intership_students');
+        Schema::dropIfExists('internship_students');
     }
 };

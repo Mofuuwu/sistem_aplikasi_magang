@@ -6,7 +6,6 @@ use App\Filament\DashboardPembimbing\Resources\PenilaianSiswaResource;
 use App\Models\Evaluation;
 use Filament\Resources\Pages\ListRecords;
 use Filament\Actions;
-use App\Models\IntershipStudent;
 use Illuminate\Support\Facades\Auth;
 
     class ViewPenilaianTugas extends ListRecords {
@@ -33,7 +32,7 @@ use Illuminate\Support\Facades\Auth;
     
         // Filter data berdasarkan mentor, type = "tugas", dan ID siswa dari URL
         return Evaluation::query()
-            ->whereHas('intership_student', function ($query) use ($studentId) {
+            ->whereHas('internship_student', function ($query) use ($studentId) {
                 $query->where('mentor_id', Auth::user()->mentor->id)
                       ->where('id', $studentId);
             })

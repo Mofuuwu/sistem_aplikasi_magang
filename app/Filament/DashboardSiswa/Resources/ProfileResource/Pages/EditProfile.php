@@ -4,7 +4,6 @@ namespace App\Filament\DashboardSiswa\Resources\ProfileResource\Pages;
 
 use App\Filament\DashboardSiswa\Resources\ProfileResource;
 use Filament\Actions;
-use Filament\Resources\Pages\EditRecord;
 use Filament\Resources\Pages\Page;
 
 class EditProfile extends Page

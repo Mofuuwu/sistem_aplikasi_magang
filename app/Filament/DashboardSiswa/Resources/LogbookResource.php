@@ -8,13 +8,10 @@ use App\Models\Logbook;
 use App\Models\Student;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
-use App\Models\IntershipStudent;
+use App\Models\InternshipStudent;
 use Filament\Resources\Resource;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\DashboardSiswa\Resources\LogbookResource\Pages;
-use App\Filament\DashboardSiswa\Resources\LogbookResource\RelationManagers;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
 class LogbookResource extends Resource
@@ -31,8 +28,8 @@ class LogbookResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Hidden::make('intership_student_id')
-                    ->default(fn () => IntershipStudent::where('student_id', Student::where('user_id', Auth::id())->first()?->id)->first()?->id),
+                Forms\Components\Hidden::make('internship_student_id')
+                    ->default(fn () => InternshipStudent::where('student_id', Student::where('user_id', Auth::id())->first()?->id)->first()?->id),
                 Forms\Components\DatePicker::make('date')
                 ->default(now()->format('Y-m-d')) 
                 ->dehydrated(true) 
@@ -68,7 +65,7 @@ class LogbookResource extends Resource
                 
 
             ])
-            ->modifyQueryUsing(fn (Builder $query) => $query->where('intership_student_id', Auth::user()->student->intership_student->id)->orderBy('date', 'desc'))
+            ->modifyQueryUsing(fn (Builder $query) => $query->where('internship_student_id', Auth::user()->student->internship_student->id)->orderBy('date', 'desc'))
             ->filters([
                 //
             ])

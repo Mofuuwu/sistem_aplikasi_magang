@@ -6,14 +6,11 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
-            $table->string('intership_student_id');
+            $table->string('internship_student_id');
             $table->string('mentor_id');
             $table->string('task_header');
             $table->text('task_description');

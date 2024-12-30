@@ -4,7 +4,7 @@ namespace App\Filament\DashboardSiswa\Resources\LogbookResource\Pages;
 
 use Filament\Actions;
 use App\Models\Student;
-use App\Models\IntershipStudent;
+use App\Models\InternshipStudent;
 use Illuminate\Support\Facades\Auth;
 use Filament\Resources\Pages\ListRecords;
 use App\Filament\DashboardSiswa\Resources\LogbookResource;
@@ -17,8 +17,8 @@ class ListLogbooks extends ListRecords
     public function downloadPDF()
     {
         $studentData = Student::where('user_id', Auth::id())->first();
-        $intershipStudentData = IntershipStudent::where('student_id', $studentData->id)->first();
-        $logbooks = Logbook::where('intership_student_id', $intershipStudentData->id)->get();
+        $internshipStudentData = InternshipStudent::where('student_id', $studentData->id)->first();
+        $logbooks = Logbook::where('internship_student_id', $internshipStudentData->id)->get();
 
         $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('pdf.logbooks', compact('logbooks'));
         return response()->streamDownload(fn () => print($pdf->output()), 'logbooks.pdf');
@@ -31,9 +31,9 @@ class ListLogbooks extends ListRecords
             ->label('Tambah Logbook')
             ->action(function() {
                 $studentData = Student::where('user_id', Auth::id())->first();
-                $intershipStudentData = IntershipStudent::where('student_id', $studentData->id)->first();
+                $internshipStudentData = InternshipStudent::where('student_id', $studentData->id)->first();
                 $logbookData = [
-                    'intership_student_id' => $intershipStudentData->id,
+                    'internship_student_id' => $internshipStudentData->id,
                     'date' => now(),
                 ];
                 Logbook::create($logbookData);

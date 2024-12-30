@@ -4,10 +4,8 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\IntershipStudent>
- */
-class IntershipStudentFactory extends Factory
+
+class InternshipStudentFactory extends Factory
 {
     /**
      * Define the model's default state.

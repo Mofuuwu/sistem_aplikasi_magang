@@ -10,12 +10,12 @@ $schools = School::all();
 
 <x-filament::page>
     
-@if ($errors->any()) <!-- Mengecek jika ada error -->
+@if ($errors->any()) 
     <x-filament::section color="danger" id="error-alert" style="background-color:red;">
         <div class="w-full flex justify-between">
             <ul>
-                @foreach ($errors->all() as $error) <!-- Loop melalui semua error -->
-                    <li>{{ $error }}</li> <!-- Menampilkan setiap pesan error -->
+                @foreach ($errors->all() as $error) 
+                    <li>{{ $error }}</li> 
                 @endforeach
             </ul>
             <button 

@@ -59,7 +59,7 @@
     }
 </style>
     <div class="container">
-        @foreach ($intership_students as $is)
+        @foreach ($internship_students as $is)
             <x-filament::section class="card">
                 <div class="card-inner">
                 <div class="image">

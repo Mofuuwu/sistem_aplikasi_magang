@@ -20,7 +20,7 @@ class Student extends Model
     public function user() {
         return $this->belongsTo(User::class, 'user_id');
     }
-    public function intership_student() {
-        return $this->hasOne(IntershipStudent::class, 'student_id');
+    public function internship_student() {
+        return $this->hasOne(InternshipStudent::class, 'student_id');
     }
 }

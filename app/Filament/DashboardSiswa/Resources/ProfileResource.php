@@ -3,18 +3,12 @@
 namespace App\Filament\DashboardSiswa\Resources;
 
 use App\Filament\DashboardSiswa\Resources\ProfileResource\Pages;
-use App\Filament\DashboardSiswa\Resources\ProfileResource\RelationManagers;
-use App\Models\Profile;
 use App\Models\Student;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Filament\Infolists\Infolist;
-use Illuminate\Support\Facades\Auth;
 
 class ProfileResource extends Resource
 {

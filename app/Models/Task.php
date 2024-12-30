@@ -14,8 +14,8 @@ class Task extends Model
     public function evaluation() {
         return $this->hasOne(Evaluation::class, 'task_id');
     }
-    public function intership_student() {
-        return $this->belongsTo(IntershipStudent::class, 'intership_student_id');
+    public function internship_student() {
+        return $this->belongsTo(InternshipStudent::class, 'internship_student_id');
     }
     public function mentor() {
         return $this->belongsTo(Mentor::class, 'mentor_id');

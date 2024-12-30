@@ -6,16 +6,13 @@ use Filament\Forms;
 use App\Models\Task;
 use Filament\Tables;
 use Filament\Forms\Form;
-use App\Models\TugasSiswa;
 use Filament\Tables\Table;
-use App\Models\IntershipStudent;
+use App\Models\InternshipStudent;
 use Filament\Resources\Resource;
 use Illuminate\Support\Facades\Auth;
 use Filament\Tables\Contracts\HasTable;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\DashboardPembimbing\Resources\TugasSiswaResource\Pages;
-use App\Filament\DashboardPembimbing\Resources\TugasSiswaResource\RelationManagers;
 
 class TugasSiswaResource extends Resource
 {
@@ -29,10 +26,10 @@ class TugasSiswaResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('intership_student_id')
+                Forms\Components\Select::make('internship_student_id')
                 ->label('Pilih Siswa')
                 ->options(
-                    IntershipStudent::where('mentor_id', Auth::user()->mentor->id)
+                    InternshipStudent::where('mentor_id', Auth::user()->mentor->id)
                         ->with('student.user') // Pastikan untuk eager load relasi
                         ->get()
                         ->pluck('student.user.name', 'id') // Ambil 'name' dari relasi user dan id sebagai value
@@ -108,7 +105,7 @@ class TugasSiswaResource extends Resource
                         );
                     }
                 ),
-                Tables\Columns\TextColumn::make('intership_student.student.user.name')
+                Tables\Columns\TextColumn::make('internship_student.student.user.name')
                 ->label('Nama Siswa'),
                 Tables\Columns\TextColumn::make('task_header')
                 ->label('Tugas')
@@ -125,7 +122,7 @@ class TugasSiswaResource extends Resource
     
                 // Tambahkan kondisi di sini
                 $query->where('mentor_id', $mentorId)
-                      ->whereHas('intership_student', function ($subQuery) use ($mentorId) {
+                      ->whereHas('internship_student', function ($subQuery) use ($mentorId) {
                           $subQuery->where('mentor_id', $mentorId);
                       });
             });

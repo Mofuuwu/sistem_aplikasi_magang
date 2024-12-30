@@ -37,13 +37,13 @@ $kolomData = [
         : '<span style="color: red;">Tidak Aktif</span>',
 ];
 
-if($user->student && $user->student->intership_student) {
+if($user->student && $user->student->internship_student) {
 
-        $startAt = $user->student->intership_student->start_at 
-            ? Carbon::parse($user->student->intership_student->start_at) 
+        $startAt = $user->student->internship_student->start_at 
+            ? Carbon::parse($user->student->internship_student->start_at) 
             : null;
-        $endAt = $user->student->intership_student->end_at 
-            ? Carbon::parse($user->student->intership_student->end_at) 
+        $endAt = $user->student->internship_student->end_at 
+            ? Carbon::parse($user->student->internship_student->end_at) 
             : null;
         $today = Carbon::today();
 
@@ -68,12 +68,12 @@ if($user->student && $user->student->intership_student) {
 
     @media (max-width: 768px) {
         .grid-container {
-            grid-template-columns: 1fr; /* Menjadikan semua elemen dalam satu kolom */
+            grid-template-columns: 1fr; 
         }
     }
 </style>
 <x-filament-panels::page>
-    @if ($user->student && $user->student->intership_student)
+    @if ($user->student && $user->student->internship_student)
     <div class="grid-container">
         <x-filament::card class="grid-item">
             <div style="display:flex; justify-content:space-between; align-items:center;">
@@ -91,7 +91,7 @@ if($user->student && $user->student->intership_student) {
     @endif
 
     <!-- Tugas Hari Ini -->
-    @if ($user->student && $user->student->intership_student)
+    @if ($user->student && $user->student->internship_student)
     <x-filament::section collapsible>
         <x-slot name="heading">
             Tugas Hari Ini

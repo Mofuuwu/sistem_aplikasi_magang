@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Major extends Model
 {
-    /** @use HasFactory<\Database\Factories\MajorFactory> */
     use HasFactory, Notifiable;
     protected $guarded = [];
     public $timestamps = false;

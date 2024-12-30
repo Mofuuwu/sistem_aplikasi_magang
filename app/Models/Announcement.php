@@ -11,6 +11,6 @@ class Announcement extends Model
     use HasFactory;
     public function comments()
     {
-        return $this->hasMany(AnnouncementComments::class); // Mengindikasikan sebuah pengumuman memiliki banyak komentar
+        return $this->hasMany(AnnouncementComments::class); 
     }
 }

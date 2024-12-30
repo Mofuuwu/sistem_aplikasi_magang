@@ -22,7 +22,7 @@ class AnnouncementPolicy
     public function view(User $user, Announcement $announcement): bool
     {
         if($user->role_id == '3') {
-            return $announcement->mentor_id == $user->student->intership_student->mentor_id;
+            return $announcement->mentor_id == $user->student->internship_student->mentor_id;
         } else if ($user->role_id == '2') {
             return $announcement->mentor_id == $user->mentor->id;
         }

@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(WorkUnitSeeder::class);
         $this->call(PlacementLocationSeeder::class);
         $this->call(MentorSeeder::class);
-        $this->call(IntershipStudentSeeder::class);
+        $this->call(InternshipStudentSeeder::class);
         $this->call(MajorSeeder::class);
         $this->call(SchoolSeeder::class);
         $this->call(StudentSeeder::class);

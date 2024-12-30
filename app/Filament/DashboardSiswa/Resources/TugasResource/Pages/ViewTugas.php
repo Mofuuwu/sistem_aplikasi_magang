@@ -5,9 +5,7 @@ namespace App\Filament\DashboardSiswa\Resources\TugasResource\Pages;
 use App\Models\Task;
 use Filament\Actions;
 use Filament\Resources\Pages\Page;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
-use Filament\Resources\Pages\ViewRecord;
 use App\Filament\DashboardSiswa\Resources\TugasResource;
 
 class ViewTugas extends Page

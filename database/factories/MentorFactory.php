@@ -17,7 +17,7 @@ class MentorFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            
         ];
     }
     public function mentor1() {

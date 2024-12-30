@@ -3,17 +3,13 @@
 namespace App\Filament\DashboardSiswa\Resources;
 
 use App\Filament\DashboardSiswa\Resources\PengumumanResource\Pages;
-use App\Filament\DashboardSiswa\Resources\PengumumanResource\RelationManagers;
 use App\Models\Announcement;
-use App\Models\Pengumuman;
-use App\Models\Student;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\Auth;
 
 class PengumumanResource extends Resource
@@ -61,7 +57,7 @@ class PengumumanResource extends Resource
                 ]),
             ])
             ->modifyQueryUsing(function(Builder $query) {
-                return $query->where('mentor_id', Auth::user()->student->intership_student->mentor->id);
+                return $query->where('mentor_id', Auth::user()->student->internship_student->mentor->id);
             });
     }
 

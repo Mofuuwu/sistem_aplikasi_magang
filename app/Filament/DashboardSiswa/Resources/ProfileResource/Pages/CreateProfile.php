@@ -4,7 +4,6 @@ namespace App\Filament\DashboardSiswa\Resources\ProfileResource\Pages;
 
 use App\Filament\DashboardSiswa\Resources\ProfileResource;
 use Filament\Actions;
-use Filament\Resources\Pages\CreateRecord;
 use Filament\Resources\Pages\Page;
 
 class CreateProfile extends Page

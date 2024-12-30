@@ -4,10 +4,7 @@ namespace App\Policies;
 
 use App\Models\Task;
 use App\Models\User;
-use App\Models\Mentor;
-use App\Models\Student;
-use App\Models\IntershipStudent;
-use Illuminate\Auth\Access\Response;
+use App\Models\InternshipStudent;
 
 class TaskPolicy
 {
@@ -25,8 +22,8 @@ class TaskPolicy
     public function view(User $user, Task $task): bool
     {
         if ($user->role_id == '3') {
-            $intershipStudent = IntershipStudent::where('student_id', $user->student->id)->first();
-            return $task->intership_student_id == $intershipStudent->id;
+            $internshipStudent = InternshipStudent::where('student_id', $user->student->id)->first();
+            return $task->internship_student_id == $internshipStudent->id;
         }
 
         else if ($user->role_id == '2') {
@@ -50,8 +47,8 @@ class TaskPolicy
     public function update(User $user, Task $task): bool
     {
         if ($user->role_id == '3') {
-            $intershipStudent = IntershipStudent::where('student_id', $user->student->id)->first();
-            return $task->intership_student_id == $intershipStudent->id; 
+            $internshipStudent = InternshipStudent::where('student_id', $user->student->id)->first();
+            return $task->internship_student_id == $internshipStudent->id; 
         }
 
         else if ($user->role_id == '2') {

@@ -2,17 +2,12 @@
 
 namespace App\Filament\DashboardPembimbing\Resources;
 
-use Filament\Forms;
 use Filament\Tables;
-use App\Models\Student;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
-use App\Models\DaftarSiswaBimbingan;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\DashboardPembimbing\Resources\DaftarSiswaBimbinganResource\Pages;
-use App\Filament\DashboardPembimbing\Resources\DaftarSiswaBimbinganResource\RelationManagers;
 use App\Models\Logbook;
 
 class DaftarSiswaBimbinganResource extends Resource
@@ -56,8 +51,8 @@ class DaftarSiswaBimbinganResource extends Resource
             ->actions([
             ])
             ->modifyQueryUsing(function (Builder $query) {
-                $intershipStudentId = request()->route('record'); 
-                $query->where('intership_student_id', $intershipStudentId)
+                $internshipStudentId = request()->route('record'); 
+                $query->where('internship_student_id', $internshipStudentId)
                 ->orderBy('date', 'desc');
             });
     }

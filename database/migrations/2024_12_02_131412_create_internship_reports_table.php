@@ -6,14 +6,11 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-        Schema::create('intership_reports', function (Blueprint $table) {
+        Schema::create('internship_reports', function (Blueprint $table) {
             $table->id();
-            $table->string('intership_student_id');
+            $table->string('internship_student_id');
             $table->string('file');
             $table->time('created_at');
         });
@@ -24,6 +21,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('intership_reports');
+        Schema::dropIfExists('internship_reports');
     }
 };

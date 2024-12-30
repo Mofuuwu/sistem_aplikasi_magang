@@ -17,7 +17,7 @@ class RuleFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            
         ];
     }
     public function gr1() {

@@ -17,7 +17,7 @@ class MajorFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            
         ];
     }
     public function m1() {

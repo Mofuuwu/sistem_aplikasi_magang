@@ -6,21 +6,18 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('logbooks', function (Blueprint $table) {
             $table->id(); // Primary key as bigInteger
-            $table->unsignedBigInteger('intership_student_id'); // Foreign key reference
+            $table->unsignedBigInteger('internship_student_id'); // Foreign key reference
             $table->date('date');
             $table->enum('presence', ['hadir', 'izin', 'sakit'])->nullable();
             $table->text('information')->nullable();
             $table->timestamps(); // Optional: add timestamps for created_at and updated_at
 
             // Set foreign key constraint
-            $table->foreign('intership_student_id')->references('id')->on('intership_students')->onDelete('cascade');
+            $table->foreign('internship_student_id')->references('id')->on('internship_students')->onDelete('cascade');
         });
     }
 

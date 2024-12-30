@@ -6,17 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class IntershipStudent extends Model
+class InternshipStudent extends Model
 {
-    /** @use HasFactory<\Database\Factories\IntershipStudentFactory> */
     use HasFactory, Notifiable;
     public $timestamps = false;
     protected $guarded = [];
     public function logbooks() {
         return $this->hasMany(Logbook::class);
     }
-    public function intership_report() {
-        return $this->belongsTo(IntershipReport::class);
+    public function internship_report() {
+        return $this->belongsTo(InternshipReport::class);
     }
     public function work_unit() {
         return $this->belongsTo(WorkUnit::class, 'work_unit_id');

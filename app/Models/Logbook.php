@@ -13,7 +13,7 @@ class Logbook extends Model
     use HasFactory, Notifiable;
     public $timestamps = false;
     protected $guarded = [];
-    public function intership_student() {
-        return $this->belongsTo(IntershipStudent::class, 'intership_student_id');
+    public function internship_student() {
+        return $this->belongsTo(InternshipStudent::class, 'internship_student_id');
     }
 }

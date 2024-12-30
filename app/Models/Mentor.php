@@ -21,7 +21,7 @@ class Mentor extends Model
     public function tasks() {
         return $this->hasMany(Task::class);
     }
-    public function intership_students() {
-        return $this->hasMany(IntershipStudent::class, 'mentor_id');
+    public function internship_students() {
+        return $this->hasMany(InternshipStudent::class, 'mentor_id');
     }
 }

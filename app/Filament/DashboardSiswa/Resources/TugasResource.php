@@ -4,29 +4,21 @@ namespace App\Filament\DashboardSiswa\Resources;
 
 use Filament\Forms;
 use App\Models\Task;
-use App\Models\User;
-
 use Filament\Tables;
 use App\Models\Student;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
-use App\Models\IntershipStudent;
+use App\Models\InternshipStudent;
 use Filament\Resources\Resource;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
-use Filament\Resources\Components\Tab;
-use Filament\Support\Enums\IconPosition;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\DashboardSiswa\Resources\TugasResource\Pages;
-use App\Filament\DashboardSiswa\Resources\TugasResource\RelationManagers;
-use Illuminate\Database\Eloquent\Model;
 
 class TugasResource extends Resource
 {
     protected static ?string $model = Task::class;
     protected static ?int $navigationSort = 3;
 
-    // protected static ?string $navigationIcon = 'heroicon-s-square-3-stack-3d';
     protected static ?string $navigationIcon = 'heroicon-s-rectangle-stack';
     protected static ?string $navigationLabel = 'Tugas';
 
@@ -93,8 +85,8 @@ class TugasResource extends Resource
             ->modifyQueryUsing(function(Builder $query) {
                 $user = Auth::user();
                 $student = Student::where('user_id', $user->id)->first();
-                $intershipStudent = IntershipStudent::where('student_id', $student->id)->first();
-                $query->where('intership_student_id', $intershipStudent->id);
+                $internshipStudent = InternshipStudent::where('student_id', $student->id)->first();
+                $query->where('internship_student_id', $internshipStudent->id);
                 return $query;
             })
             ;
