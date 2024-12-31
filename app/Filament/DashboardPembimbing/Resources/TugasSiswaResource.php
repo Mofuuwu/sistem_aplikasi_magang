@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Filament\Tables\Contracts\HasTable;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\DashboardPembimbing\Resources\TugasSiswaResource\Pages;
+use Filament\Forms\Get;
 
 class TugasSiswaResource extends Resource
 {
@@ -36,7 +37,28 @@ class TugasSiswaResource extends Resource
                 )
                 ->columnSpan(2)
                 ->searchable()
-                ->required(),
+                ->required()
+                ->visibleOn('create'),
+                Forms\Components\Select::make('internship_student_id')
+                ->label('Pilih Siswa')
+                ->options(
+                    InternshipStudent::where('mentor_id', Auth::user()->mentor->id)
+                        ->with('student.user') // Pastikan untuk eager load relasi
+                        ->get()
+                        ->pluck('student.user.name', 'id') // Ambil 'name' dari relasi user dan id sebagai value
+                )
+                ->columnSpan(2)
+                ->searchable()
+                ->required()
+                ->disabled()
+                ->visibleOn('edit'),
+                Forms\Components\DatePicker::make('end_at')
+                ->label('Tenggat') 
+                ->nullable() 
+                ->reactive() 
+                ->dehydrated() 
+                ->helperText('Jika tidak ada tenggat, biarkan kosong.')
+                ->columnSpan(2),
                 Forms\Components\Select::make('status')
                 ->options([
                     'belum selesai' => 'Belum Selesai',
@@ -45,7 +67,15 @@ class TugasSiswaResource extends Resource
                 ->default('belum selesai')
                 ->visibleOn('edit')
                 ->columnSpan(2)
-                ->required(),
+                ->required()
+                ->live()
+                ->helperText('Ubah status ke selesai untuk memberikan nilai'),
+                Forms\Components\TextInput::make('score')
+                ->label('Nilai')
+                ->numeric()
+                ->maxValue(100)
+                ->columnSpan(2)
+                ->hidden(fn (Get $get): bool => $get('status') !== 'selesai'),
                 Forms\Components\Hidden::make('mentor_id')
                 ->default(Auth::user()->mentor->id)
                 ->dehydrated(),
@@ -76,13 +106,6 @@ class TugasSiswaResource extends Resource
                 Forms\Components\Hidden::make('start_at')
                 ->default(now())
                 ->dehydrated(),
-                Forms\Components\DatePicker::make('end_at')
-                ->label('Tenggat') 
-                ->nullable() 
-                ->reactive() 
-                ->dehydrated() 
-                ->helperText('Jika tidak ada tenggat, biarkan kosong.')
-                ->columnSpan(2),
                 Forms\Components\Textarea::make('response')
                 ->label('Jawaban')
                 ->columnSpan(2)
@@ -106,10 +129,31 @@ class TugasSiswaResource extends Resource
                     }
                 ),
                 Tables\Columns\TextColumn::make('internship_student.student.user.name')
-                ->label('Nama Siswa'),
+                ->label('Nama Siswa')
+                ->searchable(),
                 Tables\Columns\TextColumn::make('task_header')
                 ->label('Tugas')
                 ->limit(40),
+                Tables\Columns\BadgeColumn::make('score')
+                ->label('Nilai')
+                ->getStateUsing(function ($record) {
+                    if ($record->status !== 'selesai') {
+                        return 'belum selesai';
+                    }
+                    if (is_null($record->score)) {
+                        return 'belum dinilai';
+                    }
+                    return $record->score;
+                })
+                ->color(function ($state, $record) {
+                    if ($record->status !== 'selesai') {
+                        return 'warning'; 
+                    }
+                    if (is_null($record->score)) {
+                        return 'danger';
+                    }
+                    return 'success';
+                }),
             ])
             ->filters([
                 //
@@ -139,7 +183,7 @@ class TugasSiswaResource extends Resource
     {
         return [
             'index' => Pages\ListTugasSiswas::route('/'),
-            'create' => Pages\CreateTugasSiswa::route('/create'),
+            // 'create' => Pages\CreateTugasSiswa::route('/create'),
             'edit' => Pages\EditTugasSiswa::route('/{record}/edit'),
         ];
     }

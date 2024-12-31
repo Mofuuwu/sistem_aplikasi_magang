@@ -62,9 +62,8 @@ class LogbookResource extends Resource
                 ->label('Keterangan'),
                 Tables\Columns\TextInputColumn::make('information')
                 ->label('Tambahan'),
-                
-
             ])
+            ->emptyStateHeading('Silahkan Tambahkan Presensi Anda Terlebih Dahulu')
             ->modifyQueryUsing(fn (Builder $query) => $query->where('internship_student_id', Auth::user()->student->internship_student->id)->orderBy('date', 'desc'))
             ->filters([
                 //

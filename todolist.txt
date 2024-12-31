@@ -16,3 +16,5 @@ sabtu 28 desember
 
 --tanya untuk fitur evaluasi penilaian nya setiap ada tugas atau setiap jangka waktu tertentu
 -- fungsi memilih task_id pada resource evaluation bagian penilaian tugas belum berfungsi
+
+-- tambahkan fitur membuat atau menambahkan tata tertib untuk siswa sesuai dengan unit kerja nya masing masing

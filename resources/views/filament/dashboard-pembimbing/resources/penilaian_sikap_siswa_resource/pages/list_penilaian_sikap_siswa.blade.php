@@ -72,9 +72,7 @@
                     <p class="text-md"><b>{{$is->student->user->name}}</b></p>
                     <p class="text-sm"><i>{{$is->student->major->name}}</i></p>
                     <div class="row martop-1 flex flex-wrap">
-                        <x-filament::button class="text-sm btn " tag="a" href="penilaian_siswa/penilaian_tugas/{{$is->student->id}}" color="info">Evaluasi Tugas</x-filament::button>
-                        <x-filament::button class="text-sm btn " tag="a" href="penilaian_siswa/penilaian_sikap/{{$is->student->id}}" color="primary">Evaluasi Sikap</x-filament::button>
-                        <x-filament::button class="text-sm btn " tag="a" href="penilaian_siswa/create" color="danger">Tambah Evaluasi</x-filament::button>
+                        <x-filament::button class="text-sm btn " tag="a" href="penilaian_sikap/{{$is->student->id}}" color="info">Evaluasi Sikap</x-filament::button>
                     </div>
                 </div>
                 </div>

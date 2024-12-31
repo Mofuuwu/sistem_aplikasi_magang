@@ -74,9 +74,8 @@ class PengumumanPembimbingResource extends Resource
     {
         return [
             'index' => Pages\ListPengumumanPembimbings::route('/'),
-            'create' => Pages\CreatePengumumanPembimbing::route('/create'),
-            'edit' => Pages\EditPengumumanPembimbing::route('/{record}/edit'),
             'view' => Pages\ViewPengumumanPembimbing::route('pengumuman/{record}'),
         ];
     }
+    
 }

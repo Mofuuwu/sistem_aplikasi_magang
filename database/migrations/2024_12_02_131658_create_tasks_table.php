@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('end_at')->nullable();
             $table->enum('status', ['belum selesai', 'dikerjakan', 'selesai']);
             $table->string('response')->nullable();
+            $table->integer('score')->default(null)->nullable()->ma;
             $table->timestamps();
         });
     }

@@ -11,9 +11,6 @@ class Task extends Model
     /** @use HasFactory<\Database\Factories\TaskFactory> */
     use HasFactory, Notifiable;
     protected $guarded = [];
-    public function evaluation() {
-        return $this->hasOne(Evaluation::class, 'task_id');
-    }
     public function internship_student() {
         return $this->belongsTo(InternshipStudent::class, 'internship_student_id');
     }

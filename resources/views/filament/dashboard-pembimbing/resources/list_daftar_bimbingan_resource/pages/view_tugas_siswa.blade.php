@@ -1,14 +1,20 @@
 <x-filament::page>
     @if ($tasks && $tasks->isNotEmpty())
         @foreach ($tasks as $task)
-            <x-filament::section collapsible collapsed style="margin-bottom:-2.5%;">
-                <x-slot name="heading">
+            <x-filament::section style="margin-bottom:-2.5%;">
                     <div class="flex justify-between items-center">
+                        <div class="flex flex-row gap-3">
                         <p>{{$task->task_header}}</p>
-                        <div class="flex gap-1">
-                            <x-filament::badge class="max-w-fit" :color="$task->status == 'selesai' ? 'success' : 'danger'">
-                                {{$task->status}}
+                        <x-filament::badge class="max-w-fit" :color="$task->status == 'selesai' ? 'success' : 'danger'">
+                            {{$task->status}}
+                        </x-filament::badge>
+                        </div>
+                        <div class="flex gap-3">
+                            @if ($task->status == 'selesai')
+                            <x-filament::badge class="max-w-fit" :color="$task->score == null ? 'danger' : 'success'">
+                                {{$task->score == null? 'belum dinilai' : $task->score }}
                             </x-filament::badge>
+                            @endif
                             <x-filament::button
                             tag="a"
                             href="/dashboard_pembimbing/tugas_siswa/{{$task->id}}/edit"
@@ -17,10 +23,6 @@
                             </x-filament::button>
                         </div>
                     </div> 
-                </x-slot>
-                <div class="flex flex-col gap-4">
-                    {!! str($task->task_description)->sanitizeHtml() !!}
-                </div>
             </x-filament::section>
         @endforeach
     @else
