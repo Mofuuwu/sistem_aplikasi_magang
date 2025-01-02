@@ -21,6 +21,7 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 
 class DashboardPembimbingPanelProvider extends PanelProvider
 {
+    public static ?string $navigationLabel = 'Dashboard';
     public function panel(Panel $panel): Panel
     {
         return $panel

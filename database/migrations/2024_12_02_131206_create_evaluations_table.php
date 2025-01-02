@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('evaluations', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('internship_student_id');
-            $table->enum('type', ['sikap']);
+            $table->unsignedBigInteger('mentor_id');
+            $table->enum('type', ['sikap', 'kehadiran']);
             $table->integer('score')->nullable()->default(null);
             $table->timestamps();
         });

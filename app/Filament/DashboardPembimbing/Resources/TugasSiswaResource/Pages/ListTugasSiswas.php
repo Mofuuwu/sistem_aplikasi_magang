@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 class ListTugasSiswas extends ListRecords
 {
-    protected static ?string $title = 'Daftar Tugas Siswa';
+    protected static ?string $title = 'Tugas Siswa';
     protected static string $resource = TugasSiswaResource::class;
     public function getTabs(): array
     {

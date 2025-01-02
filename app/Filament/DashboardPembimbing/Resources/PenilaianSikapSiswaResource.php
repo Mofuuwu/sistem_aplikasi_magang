@@ -3,16 +3,15 @@
 namespace App\Filament\DashboardPembimbing\Resources;
 
 use App\Filament\DashboardPembimbing\Resources\PenilaianSikapSiswaResource\Pages;
-use App\Filament\DashboardPembimbing\Resources\PenilaianSikapSiswaResource\RelationManagers;
 use App\Models\Evaluation;
+use App\Models\InternshipStudent;
 use App\Models\PenilaianSikapSiswa;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Auth;
 
 class PenilaianSikapSiswaResource extends Resource
 {
@@ -20,19 +19,27 @@ class PenilaianSikapSiswaResource extends Resource
     protected static ?string $model = Evaluation::class;
     protected static ?string $navigationLabel = 'Nilai Sikap';
     protected static ?string $slug = 'penilaian_sikap';
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-s-chart-bar';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('intership_student_id')
+                Forms\Components\Select::make('internship_student_id')
+                ->options(InternshipStudent::where('mentor_id', Auth::user()->mentor->id)
+                ->join('students', 'internship_students.student_id', '=', 'students.id')
+                ->join('users', 'students.user_id', '=', 'users.id')
+                ->pluck('users.name', 'internship_students.id'))   
+                ->required()
                 ->label('Pilih Siswa'),
                 Forms\Components\Hidden::make('type')
                 ->default('sikap')
                 ->dehydrated(),
                 Forms\Components\TextInput::make('score')
                 ->label('Tentukan Nilai Sikap')
+                ->required()
+                ->numeric()
+                ->maxValue(100)
             ]);
     }
 
@@ -48,11 +55,9 @@ class PenilaianSikapSiswaResource extends Resource
                 ->label('Dinilai Pada')
             ])
             ->filters([
-                //
+                
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
             ]);
@@ -61,7 +66,7 @@ class PenilaianSikapSiswaResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            
         ];
     }
 
@@ -69,9 +74,7 @@ class PenilaianSikapSiswaResource extends Resource
     {
         return [
             'index' => Pages\ListPenilaianSikapSiswas::route('/'),
-            'create' => Pages\CreatePenilaianSikapSiswa::route('/create'),
-            // 'edit' => Pages\EditPenilaianSikapSiswa::route('/{record}/edit'),
-            'view' => Pages\ViewPenilaianSikapSiswa::route('/{record}'),
+            'view_siswa' => Pages\ViewPenilaianSikapSiswa::route('/{record}'),
         ];
     }
 }

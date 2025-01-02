@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Filament\DashboardPembimbing\Resources\PenilaianSikapSiswaResource\Pages;
+namespace App\Filament\DashboardPembimbing\Resources\PenilaianKehadiranSiswaResource\Pages;
 
-use App\Filament\DashboardPembimbing\Resources\PenilaianSikapSiswaResource;
+use App\Filament\DashboardPembimbing\Resources\PenilaianKehadiranSiswaResource;
 use App\Models\Evaluation;
 use App\Models\Task;
 use Filament\Resources\Pages\ListRecords;
 use Filament\Actions;
 use Illuminate\Support\Facades\Auth;
 
-    class ViewPenilaianSikapSiswa extends ListRecords {
-    protected static string $resource = PenilaianSikapSiswaResource::class;
-    protected static ?string $title = 'Rekap Penilaian Sikap Siswa' ;
+    class ViewPenilaianKehadiranSiswa extends ListRecords {
+    protected static string $resource = PenilaianKehadiranSiswaResource::class;
+    protected static ?string $title = 'Rekap Penilaian Kehadiran Siswa' ;
 
     protected function getHeaderActions(): array
     {
@@ -29,7 +29,7 @@ use Illuminate\Support\Facades\Auth;
         }
         return Evaluation::query()
             ->whereHas('internship_student', function ($query) use ($studentId) {
-                $query->where('type', 'sikap')->where('id', $studentId);;
+                $query->where('type', 'kehadiran')->where('id', $studentId);;
             });
     }
 }

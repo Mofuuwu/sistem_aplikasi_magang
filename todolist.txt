@@ -17,4 +17,8 @@ sabtu 28 desember
 --tanya untuk fitur evaluasi penilaian nya setiap ada tugas atau setiap jangka waktu tertentu
 -- fungsi memilih task_id pada resource evaluation bagian penilaian tugas belum berfungsi
 
+
+kamis, 2 januari
+-- menyelesaikan fitur tambah nilai, dari ui ux, tabel, dan database nya di update menambahkan deskripwsi
+-- membuat agar ketika di rekap nilai dan mengklik tabel, tidak akan teredirect ke halaman lain
 -- tambahkan fitur membuat atau menambahkan tata tertib untuk siswa sesuai dengan unit kerja nya masing masing

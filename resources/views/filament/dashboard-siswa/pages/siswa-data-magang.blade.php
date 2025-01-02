@@ -31,21 +31,22 @@
                 @endforeach
             </p>
     </x-filament::section>
-    <x-filament::section>
-        <x-slot name="heading">
-            Peraturan Unit
-        </x-slot>
-            <p>
-                @php $counter2 = 1 @endphp
-                @foreach ($unitRules as $p)
-                    <ul>
-                    {{$counter2}}. {{$p->description}}
-                    @php $counter2++ @endphp
-                    </ul>
-                @endforeach
-            </p>
-    </x-filament::section>
-
+        @if ($unitRules)
+        <x-filament::section>
+            <x-slot name="heading">
+                Peraturan Unit
+            </x-slot>
+                <p>
+                    @php $counter2 = 1 @endphp
+                    @foreach ($unitRules as $p)
+                        <ul>
+                        {{$counter2}}. {{$p->description}}
+                        @php $counter2++ @endphp
+                        </ul>
+                    @endforeach
+                </p>
+        </x-filament::section>
+        @endif
     @else
     <x-filament::section class="text-center p-4 text-gray-600">
         Anda Belum Terdaftar Sebagai Siswa Magang,

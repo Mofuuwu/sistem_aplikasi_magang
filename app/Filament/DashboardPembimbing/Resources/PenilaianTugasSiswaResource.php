@@ -20,7 +20,7 @@ class PenilaianTugasSiswaResource extends Resource
     protected static ?string $navigationGroup = 'Rekap Nilai';
     protected static ?string $model = Evaluation::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-s-chart-bar';
     protected static ?string $navigationLabel = 'Nilai Tugas';
     protected static ?string $slug = 'penilaian_tugas';
 
@@ -71,7 +71,7 @@ class PenilaianTugasSiswaResource extends Resource
     {
         return [
             'index' => Pages\ListPenilaianTugasSiswas::route('/'),
-            'view' => Pages\ViewPenilaianTugasSiswa::route('/{record}'),
+            'view_siswa' => Pages\ViewPenilaianTugasSiswa::route('/{record}'),
         ];
     }
 }

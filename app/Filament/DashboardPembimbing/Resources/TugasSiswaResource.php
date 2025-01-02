@@ -20,8 +20,9 @@ class TugasSiswaResource extends Resource
     protected static ?string $model = Task::class;
     protected static ?string $slug = 'tugas_siswa';
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-s-square-3-stack-3d';
     protected static ?string $navigationLabel = 'Tugas Siswa';
+    protected static ?int $navigationSort = 5;
 
     public static function form(Form $form): Form
     {

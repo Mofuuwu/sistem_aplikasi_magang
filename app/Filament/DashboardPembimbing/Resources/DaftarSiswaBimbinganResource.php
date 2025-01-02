@@ -13,9 +13,10 @@ use App\Models\Logbook;
 class DaftarSiswaBimbinganResource extends Resource
 {
     protected static ?string $model = Logbook::class;
-    protected static ?string $navigationLabel = 'Daftar Siswa Bimbingan';
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationLabel = 'Daftar Siswa';
+    protected static ?string $navigationIcon = 'heroicon-s-user-group';
     protected static ?string $slug = 'daftar_siswa_bimbingan';
+    protected static ?int $navigationSort = 2;
 
     public static function form(Form $form): Form
     {

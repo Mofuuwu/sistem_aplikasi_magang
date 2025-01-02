@@ -10,7 +10,7 @@ class Evaluation extends Model
 {
     use HasFactory, Notifiable;
     protected $guarded = [];
-    public $timestamps = false;
+    public $timestamps = true;
     public function internship_student() {
         return $this->belongsTo(InternshipStudent::class, 'internship_student_id');
     }

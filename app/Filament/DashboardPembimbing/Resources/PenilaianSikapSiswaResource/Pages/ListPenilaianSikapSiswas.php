@@ -18,10 +18,10 @@ class ListPenilaianSikapSiswas extends ListRecords
     public function mount(): void {
         $this->internship_students = InternshipStudent::where('mentor_id', Auth::user()->mentor->id)->get();
     }
-    protected function getHeaderActions(): array{
-        return [
-            Actions\CreateAction::make('tambahNilaiSikap')
-            ->label('Tambah Nilai Sikap')
-        ];
-    }
+    // protected function getHeaderActions(): array{
+    //     return [
+    //         Actions\CreateAction::make('tambahNilaiSikap')
+    //         ->label('Tambah Nilai Sikap')
+    //     ];
+    // }
 }

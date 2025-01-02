@@ -17,7 +17,9 @@ class PengumumanPembimbingResource extends Resource
 {
     protected static ?string $model = Announcement::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-s-bell-alert';
+    protected static ?string $navigationLabel = 'Pengumuman';
+    protected static ?int $navigationSort = 4;
 
     public static function form(Form $form): Form
     {
@@ -56,9 +58,11 @@ class PengumumanPembimbingResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\DeleteAction::make()
+                ->label('Hapus'),
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\ViewAction::make(),
+                Tables\Actions\ViewAction::make()
+                ->label('Komentar'),
             ])
             ->modifyQueryUsing(fn (Builder $query) => $query->where('mentor_id', Auth::user()->mentor->id));
     }

@@ -10,11 +10,13 @@ use App\Filament\DashboardPembimbing\Resources\PengumumanPembimbingResource;
 class ListPengumumanPembimbings extends ListRecords
 {
     protected static string $resource = PengumumanPembimbingResource::class;
+    protected static ?string $title = 'Pengumuman';
 
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            Actions\CreateAction::make()
+            ->label('Buat Pengumuman'),
         ];
     }
     
