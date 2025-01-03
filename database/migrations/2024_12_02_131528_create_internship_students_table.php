@@ -9,13 +9,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('internship_students', function (Blueprint $table) {
-            $table->id(); // Primary key as bigInteger
+            $table->id(); 
             $table->unsignedBigInteger('student_id');
-            $table->unsignedBigInteger('mentor_id'); // Ensure this references another table
-            $table->unsignedBigInteger('work_unit_id'); // Ensure this references another table
+            $table->unsignedBigInteger('mentor_id'); 
+            $table->unsignedBigInteger('work_unit_id'); 
+            $table->boolean('is_magang')->default(true); 
             $table->date('start_at');
             $table->date('end_at');
-            $table->timestamps(); // Optional: add timestamps for created_at and updated_at
+            $table->timestamps(); 
         });
     }
 

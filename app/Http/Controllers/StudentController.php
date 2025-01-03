@@ -47,7 +47,9 @@ class StudentController extends Controller
                 'mother_job' => $validatedData['mother_job'],
                 'profile_photo' => $filename
             ]);
+            return redirect('dashboard_siswa/profiles')->with('success', 'Data berhasil diedit');
         }
+        return redirect()->back()->withErrors($validatedData);
     }
     public function edit(Request $request, $id) {
         $validatedData = $request->validate([

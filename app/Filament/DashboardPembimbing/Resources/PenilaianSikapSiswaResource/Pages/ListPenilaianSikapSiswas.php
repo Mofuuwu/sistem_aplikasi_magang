@@ -11,12 +11,14 @@ use App\Filament\DashboardPembimbing\Resources\PenilaianSikapSiswaResource;
 class ListPenilaianSikapSiswas extends ListRecords
 {
     public $internship_students;
+    public $ex_internship_students;
     protected static string $view = 'filament.dashboard-pembimbing.resources.penilaian_sikap_siswa_resource.pages.list_penilaian_sikap_siswa';
     protected static string $resource = PenilaianSikapSiswaResource::class;
     protected static ?string $title = 'Penilaian Sikap';
 
     public function mount(): void {
-        $this->internship_students = InternshipStudent::where('mentor_id', Auth::user()->mentor->id)->get();
+        $this->internship_students = InternshipStudent::where('is_magang', true)->where('mentor_id', Auth::user()->mentor->id)->get();
+        $this->ex_internship_students = InternshipStudent::where('is_magang', false)->where('mentor_id', Auth::user()->mentor->id)->get();
     }
     // protected function getHeaderActions(): array{
     //     return [

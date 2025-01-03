@@ -81,8 +81,9 @@
     </div>
     <h1 style="color:#ef4444;">Siswa Belum Ditugaskan</h1>
     <div class="container gap-2">
+    @if ($studentsWithoutPendingTasks->count() != 0)
     @foreach ($studentsWithoutPendingTasks as $is)
-            <x-filament::section class="card">
+            <x-filament::section class="card mb-4">
                 <div class="card-inner">
                 <div class="image">
                     <x-filament::avatar class="card-img"
@@ -98,10 +99,18 @@
             </x-filament::section>
     @endforeach
     </div>
+    @else
+    <x-filament::section class="w-full text-center text-gray-600 text-md mb-4">
+        Tidak Ada Siswa Yang Sedang Ditugaskan
+    </x-filament::section>
+    @endif
+
+
     <h1 style="color:#10B981;">Siswa Ditugaskan</h1>
     <div class="container gap-2">
+    @if ($studentsWithPendingTasks->count() != 0)
     @foreach ($studentsWithPendingTasks as $is)
-            <x-filament::section class="card">
+            <x-filament::section class="card mb-4">
                 <div class="card-inner">
                 <div class="image">
                     <x-filament::avatar class="card-img"
@@ -117,4 +126,10 @@
             </x-filament::section>
     @endforeach
     </div>
+    @else
+    <x-filament::section class="w-full text-center text-gray-600 text-md">
+        Tidak Ada Siswa Yang Sedang Ditugaskan
+    </x-filament::section>
+    @endif
+
 </x-filament::page>

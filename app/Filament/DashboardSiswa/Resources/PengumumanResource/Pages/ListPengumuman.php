@@ -21,7 +21,7 @@ class ListPengumuman extends Page
 
     public function mount() {
         $this->internship_student = InternshipStudent::where('student_id', Auth::user()->student->id)->first();
-        $this->announcements = Announcement::where('mentor_id', $this->internship_student->mentor_id)->get();
+        $this->announcements = Announcement::where('updated_at', '<', Auth::user()->student->internship_student->end_at)->where('mentor_id', $this->internship_student->mentor_id)->get();
     }
     public function comment() {
         

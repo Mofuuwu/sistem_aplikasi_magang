@@ -27,6 +27,7 @@ class DashboardAdminPanelProvider extends PanelProvider
             ->id('dashboard_admin')
             ->path('dashboard_admin')
             ->login()
+            ->brandName('Aplikasi Magang')
             ->registration()
             ->breadcrumbs(false)
             ->colors([
@@ -40,8 +41,8 @@ class DashboardAdminPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/DashboardAdmin/Widgets'), for: 'App\\Filament\\DashboardAdmin\\Widgets')
             ->widgets([
-                Widgets\AccountWidget::class,
-                Widgets\FilamentInfoWidget::class,
+                // Widgets\AccountWidget::class,
+                // Widgets\FilamentInfoWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,

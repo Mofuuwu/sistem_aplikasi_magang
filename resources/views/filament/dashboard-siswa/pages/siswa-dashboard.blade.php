@@ -73,7 +73,7 @@ if($user->student && $user->student->internship_student) {
     }
 </style>
 <x-filament-panels::page>
-    @if ($user->student && $user->student->internship_student)
+    @if ($user->student && $user->student->internship_student->is_magang && $sisaHariMagang != 0)
     <div class="grid-container">
         <x-filament::card class="grid-item">
             <div style="display:flex; justify-content:space-between; align-items:center;">
@@ -88,8 +88,6 @@ if($user->student && $user->student->internship_student) {
             </div>
         </x-filament::card>
     </div>
-    @endif
-
     <!-- Tugas Hari Ini -->
     @if ($user->student && $user->student->internship_student)
     <x-filament::section collapsible>
@@ -144,4 +142,9 @@ if($user->student && $user->student->internship_student) {
             </x-filament::button>
         </div>
     </x-filament::section>
+    @else
+    <x-filament::section class="text-md text-center text-gray-600">
+        Magang anda telah berakhir
+    </x-filament::section>
+    @endif
 </x-filament-panels::page>

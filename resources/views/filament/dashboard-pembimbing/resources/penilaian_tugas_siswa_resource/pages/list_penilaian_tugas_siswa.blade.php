@@ -79,4 +79,32 @@
             </x-filament::section>
         @endforeach
     </div>
+    <h1 class="text-3xl font-bold" style="color: #4affff;">Riwayat Penilaian</h1>
+    @if ($ex_internship_students->isNotEmpty())
+    <div class="container">
+        @foreach ($ex_internship_students as $is)
+            <x-filament::section class="card">
+                <div class="card-inner">
+                <div class="image">
+                    <x-filament::avatar class="card-img"
+                        src="{{asset('storage/profile_photos/' . $is->student->profile_photo)}}"
+                        alt="Dan Harrin"
+                    />
+                </div>
+                <div class="card-content">
+                    <p class="text-md"><b>{{$is->student->user->name}}</b></p>
+                    <p class="text-sm"><i>{{$is->student->major->name}}</i></p>
+                    <div class="row martop-1 flex flex-wrap">
+                        <x-filament::button class="text-sm btn " tag="a" href="penilaian_tugas/{{$is->student->id}}" color="primary">Evaluasi Tugas</x-filament::button>
+                    </div>
+                </div>
+                </div>
+            </x-filament::section>
+        @endforeach
+    </div>
+    @else
+        <x-filament::section class="text-center text-gray-600 text-md">
+            Belum Ada Riwayat Penilaian
+        </x-filament::section>
+    @endif
 </x-filament::page>

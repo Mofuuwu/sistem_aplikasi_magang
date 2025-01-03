@@ -31,10 +31,10 @@ class TugasSiswaResource extends Resource
                 Forms\Components\Select::make('internship_student_id')
                 ->label('Pilih Siswa')
                 ->options(
-                    InternshipStudent::where('mentor_id', Auth::user()->mentor->id)
-                        ->with('student.user') // Pastikan untuk eager load relasi
+                    InternshipStudent::where('is_magang', true)->where('mentor_id', Auth::user()->mentor->id)
+                        ->with('student.user') 
                         ->get()
-                        ->pluck('student.user.name', 'id') // Ambil 'name' dari relasi user dan id sebagai value
+                        ->pluck('student.user.name', 'id') 
                 )
                 ->columnSpan(2)
                 ->searchable()
@@ -43,10 +43,10 @@ class TugasSiswaResource extends Resource
                 Forms\Components\Select::make('internship_student_id')
                 ->label('Pilih Siswa')
                 ->options(
-                    InternshipStudent::where('mentor_id', Auth::user()->mentor->id)
-                        ->with('student.user') // Pastikan untuk eager load relasi
+                    InternshipStudent::where('is_magang', true)->where('mentor_id', Auth::user()->mentor->id)
+                        ->with('student.user') 
                         ->get()
-                        ->pluck('student.user.name', 'id') // Ambil 'name' dari relasi user dan id sebagai value
+                        ->pluck('student.user.name', 'id') 
                 )
                 ->columnSpan(2)
                 ->searchable()

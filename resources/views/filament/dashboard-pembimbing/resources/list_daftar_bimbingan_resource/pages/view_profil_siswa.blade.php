@@ -30,6 +30,9 @@ $kolomData = [
     'Pekerjaan Ibu' => $student && $student->mother_job 
         ? $student->mother_job 
         : '<span style="color: red;">Belum diisi</span>',
+    'Waktu Magang' => $student && $student->internship_student 
+        ? $student->internship_student->start_at . " - " . $student->internship_student->end_at 
+        : '<span style="color: red;">Belum diisi</span>',
 ];
 
 @endphp
