@@ -1,10 +1,3 @@
--- menambahkan policy di halaman pembimbing
--- membuat logika untuk siswa yg telah selesai magang
-   + jika waktunya telah selesai tampilkan di dashboard siswa (magang telah berakhir)
-   + pada halaman pembimbing buat navbar baru untuk melihat history semua siswa bimbingan
-   + pada halaman pembimbing, untuk siswa yg telah selesai magang, tampilkan di history
-   + buat logika untuk menampilkan siswa yg masih magang di pembimbing
-      = mungkin buat kolom baru "is_magang" : boolean di tabel intership_student
 
 todolist dashboard admin 
 1. menampilkan list siswa -> ditambahkan tab untuk kategori yg sudah aktif, yg belum aktif
